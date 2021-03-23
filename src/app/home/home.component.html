@@ -1,0 +1,140 @@
+<main>
+    <section class="brand__presentation">
+        <h1>La Villetta Trattoria</h1>
+    </section>
+
+    <section class="bio">
+        <div class="bio__img">
+            <img src="'assets/images/bio.jpg'" alt="BioImg" height="500" width="350">
+        </div>
+        <div class="bio__desc">
+            <h2>Name and Lastname</h2>
+            <div class="bio__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus aut totam architecto iusto blanditiis maxime enim obcaecati, accusantium, nesciunt quibusdam omnis magnam consequatur porro consectetur repudiandae reiciendis molestias. Veritatis, in!
+            </div>
+        </div>
+    </section>
+    
+    <section *ngIf="specials.length > 0" class="specials">
+        <h1>Specials Menu</h1>
+
+        <app-menu-item 
+            *ngFor="let special of specials; let index" 
+            [name]="special.name" 
+            [description]="special.description"
+            [imageUrl]="special.image.url"
+            [price]="special.price"
+            [divider]="index < specials.length - 1">
+        </app-menu-item>
+
+    </section>
+
+    
+    <section *ngIf="specials.length < 1" class="empty">
+        <h1>No Specials available at this time</h1>
+    </section>
+
+    <section *ngIf="regQty > 0" class="regulars">
+        <h1>Menu</h1>
+
+        <div *ngIf="antipasti.length > 0" class="course">
+            <div class="course-title">Antipasto</div>
+
+            <app-menu-item 
+                *ngFor="let dish of antipasti; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < antipasti.length - 1">
+            </app-menu-item>
+        </div>
+        
+        <div *ngIf="primi.length > 0" class="course">
+            <div class="course-title">Primo</div>
+
+            <app-menu-item 
+                *ngFor="let dish of primi; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < primi.length - 1">
+            </app-menu-item>
+        </div>
+
+        <div *ngIf="secondi.length > 0" class="course">
+            <div class="course-title">Secondo</div>
+
+            <app-menu-item 
+                *ngFor="let dish of secondi; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < secondi.length - 1">
+            </app-menu-item>
+        </div>
+
+        <div *ngIf="pizze.length > 0" class="course">
+            <div class="course-title">Pizza</div>
+
+            <app-menu-item 
+                *ngFor="let dish of pizze; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < pizze.length - 1">
+            </app-menu-item>
+        </div>
+
+        <div *ngIf="desserts.length > 0" class="course">
+            <div class="course-title">Dessert</div>
+
+            <app-menu-item 
+                *ngFor="let dish of desserts; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < desserts.length - 1">
+            </app-menu-item>
+        </div>
+
+        <div *ngIf="beverages.length > 0" class="course">
+            <div class="course-title">Beverage</div>
+
+            <app-menu-item 
+                *ngFor="let dish of beverages; let index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.image.url"
+                [price]="dish.price"
+                [divider]="index < beverages.length - 1">
+            </app-menu-item>
+        </div>
+    </section>
+
+
+    <section *ngIf="regQty < 1" class="empty">
+        <h1>No items on the menu at this time</h1>
+    </section>
+
+
+    <div class="extra-bg">
+    </div>
+
+    <section class="contact">
+        <h1>Contact</h1>
+        <div class="divider"></div>
+        <h3><a href="tel:"> </a></h3>
+        <h3><a href="mailto:"> </a></h3>
+        <!-- Address -->
+        <h3><a href="http://" target="_blank" rel="noopener noreferrer">  </a></h3>
+        <div class="social">
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
+        </div>
+    </section>
+</main>

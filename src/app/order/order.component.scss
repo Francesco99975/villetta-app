@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+
+.ord-section h1 {
+  font-size: 3.5rem;
+  height: 10rem;
+}
+
+@media (min-width: 55rem) {
+  .ord-section h1 {
+    font-size: 5rem;
+    height: 20rem;
+  }
+}

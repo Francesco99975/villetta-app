@@ -1,0 +1,128 @@
+body {
+  font-family: "OleoScript", sans-serif, monospace;
+  background-color: #083995;
+  position: relative;
+}
+main {
+  grid-area: none;
+}
+.order-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    justify-self: center;
+    color: white;
+    font-family: "Tangerine", sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    font-size: 3rem;
+  }
+}
+.back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2rem;
+  font: inherit;
+  width: 3.3rem;
+  height: 3.3rem;
+  justify-self: flex-start;
+  border-radius: 10px;
+  background-color: #191b1b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  i {
+    color: #d0e025;
+    font-size: 1.5rem;
+  }
+}
+.empty-msg {
+  color: #083995;
+  font-size: 1.7rem;
+}
+.bag-container {
+  width: 65%;
+  margin: auto;
+  margin-top: 5rem;
+  background-color: #fffdd0;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.clear-btn {
+  font: inherit;
+  font-weight: bold;
+  border-radius: 25px;
+  background: red;
+  color: white;
+  width: 80%;
+  cursor: pointer;
+  margin: 1.5rem;
+  padding: 1rem;
+  border: none;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.order-list {
+  width: 80%;
+  border: 3px dashed #083995;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 25px;
+}
+.order-item {
+  width: 80%;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #083995;
+}
+.remove-btn {
+  font: inherit;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: red;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  i {
+    color: white;
+  }
+}
+.order-tot {
+  color: #083995;
+}
+.continue-btn {
+  font: inherit;
+  font-weight: bold;
+  border-radius: 25px;
+  background: #083995;
+  color: #d0e025;
+  width: 80%;
+  cursor: pointer;
+  margin: 1.5rem;
+  padding: 1rem;
+  border: none;
+  text-align: center;
+  font-size: 1.3rem;
+}

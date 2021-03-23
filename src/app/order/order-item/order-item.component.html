@@ -1,0 +1,31 @@
+<div class="order-item">
+    <div class="order-item__wrapper">
+        <div class="order-item__info">
+            <h2>{{ name }}</h2>
+            <h3>{{ description }}</h3>
+            <h2>${{ price }}</h2>
+        </div>
+        <div class="order-item__image">
+            <img [src]="imagePath" alt="SpecialImg" class="order-item__img" height="100" width="100">
+        </div>
+    </div>
+
+    <div class="order-item__actions">
+        <button class="btn btn-add" (click)="addToBag()">Add to Order</button>
+        <div class="order-item__qty">
+            <button class="btn btn-dec" (click)="decrement()">
+                <i class="fas fa-minus"></i>
+            </button>
+            <span class="qty">{{ itemQuantity }}</span>
+            <button class="btn btn-inc" (click)="increment()">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="divider" class="item-divider">
+    <div class="line-sx"></div>
+    <div class="center"></div>
+    <div class="line-dx"></div>
+</div>

@@ -1,0 +1,55 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button class="toggle-button">
+        <span class="toggle-button__bar"></span>
+        <span class="toggle-button__bar"></span>
+        <span class="toggle-button__bar"></span>
+    </button>
+
+    <div class="brand">
+        <img src="'assets/assets/images/logo.png'" alt="LOGO" width="70" height="70">
+
+        <nav class="main-nav">
+            <ul class="main-nav__items">
+                <li class="main-nav__item">
+                    <a routerLink="/" routerLinkActive="active">
+                        Home
+                    </a>
+                </li>
+                <li class="main-nav__item">
+                    <a routerLink="/party" routerLinkActive="active">
+                        Party Menu
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="nav__actions">
+    <button *ngIf="checkout" data-count="0"  class="btn btn-checkout">
+            View Order
+    </button>
+
+    <button *ngIf="!checkout" class="btn btn-order">
+            Order Now!
+    </button>
+        
+    </div>
+</header>
+<nav class="mobile-nav">
+    <div class="nav__image">
+        <img src="'assets/images/logo.png'" alt="LOGO" width="200" height="200">
+    </div>
+    <ul class="mobile-nav__items">
+        <li class="mobile-nav__item">
+            <a routerLink="/" routerLinkActive="active">
+                Home
+            </a>
+        </li>
+        <li class="mobile-nav__item">
+            <a routerLink="/party" routerLinkActive="active">
+                Party Menu
+            </a>
+        </li>
+    </ul>
+</nav>

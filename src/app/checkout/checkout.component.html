@@ -1,0 +1,28 @@
+<button class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+</button>
+<header class="order-header">
+    <h1>Your Order</h1>
+</header>
+
+
+<main class="bag-container">
+    <div *ngIf="cart.count > 0" class="bag-wrapper">
+        <button class="clear-btn">Clear Order</button>
+        <ul class="order-list">  
+            <li *ngFor="let item of cart.items" class="order-item">
+                <div class="order-details">
+                    <span>{{ item.quantity }}x. {{ item.product }}</span>
+                    <span>${{ item.subtotal }}</span>
+                </div>
+                <button class="remove-btn">
+                    <i class="fas fa-minus-circle"></i>
+                </button>
+            </li>       
+        </ul>
+        <h2 class="order-tot">Total: ${{ cart.total }}</h2>
+        <button class="continue-btn">Continue</button>
+    </div>
+
+    <h1 *ngIf="cart.count < 1" class="empty-msg">The bag is empty!</h1>
+</main>
