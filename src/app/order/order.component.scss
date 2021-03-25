@@ -5,6 +5,11 @@
   height: 10rem;
 }
 
+.wrap,
+.course {
+  width: 100%;
+}
+
 @media (min-width: 55rem) {
   .ord-section h1 {
     font-size: 5rem;

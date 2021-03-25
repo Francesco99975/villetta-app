@@ -1,3 +1,4 @@
+<app-header [checkout]="false"></app-header>
 <main>
     <section class="brand__presentation">
         <h1>La Villetta Trattoria</h1>
@@ -5,7 +6,7 @@
 
     <section class="bio">
         <div class="bio__img">
-            <img src="'assets/images/bio.jpg'" alt="BioImg" height="500" width="350">
+            <img src="../../assets/images/bio.jpg" alt="BioImg" height="500" width="350">
         </div>
         <div class="bio__desc">
             <h2>Name and Lastname</h2>
@@ -18,13 +19,13 @@
     <section *ngIf="specials.length > 0" class="specials">
         <h1>Specials Menu</h1>
 
-        <app-menu-item 
-            *ngFor="let special of specials; let index" 
+        <app-menu-item class="wrap"
+            *ngFor="let special of specials; let i = index" 
             [name]="special.name" 
             [description]="special.description"
-            [imageUrl]="special.image.url"
+            [imageUrl]="special.imageUrl"
             [price]="special.price"
-            [divider]="index < specials.length - 1">
+            [divider]="i + 1 < specials.length">
         </app-menu-item>
 
     </section>
@@ -40,78 +41,78 @@
         <div *ngIf="antipasti.length > 0" class="course">
             <div class="course-title">Antipasto</div>
 
-            <app-menu-item 
-                *ngFor="let dish of antipasti; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of antipasti; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < antipasti.length - 1">
+                [divider]="i + 1 < antipasti.length">
             </app-menu-item>
         </div>
         
         <div *ngIf="primi.length > 0" class="course">
             <div class="course-title">Primo</div>
 
-            <app-menu-item 
-                *ngFor="let dish of primi; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of primi; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < primi.length - 1">
+                [divider]="i + 1 < primi.length">
             </app-menu-item>
         </div>
 
         <div *ngIf="secondi.length > 0" class="course">
             <div class="course-title">Secondo</div>
 
-            <app-menu-item 
-                *ngFor="let dish of secondi; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of secondi; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < secondi.length - 1">
+                [divider]="i + 1 < secondi.length">
             </app-menu-item>
         </div>
 
         <div *ngIf="pizze.length > 0" class="course">
             <div class="course-title">Pizza</div>
 
-            <app-menu-item 
-                *ngFor="let dish of pizze; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of pizze; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < pizze.length - 1">
+                [divider]="i + 1 < pizze.length">
             </app-menu-item>
         </div>
 
         <div *ngIf="desserts.length > 0" class="course">
             <div class="course-title">Dessert</div>
 
-            <app-menu-item 
-                *ngFor="let dish of desserts; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of desserts; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < desserts.length - 1">
+                [divider]="i + 1 < desserts.length">
             </app-menu-item>
         </div>
 
         <div *ngIf="beverages.length > 0" class="course">
             <div class="course-title">Beverage</div>
 
-            <app-menu-item 
-                *ngFor="let dish of beverages; let index" 
+            <app-menu-item class="wrap"
+                *ngFor="let dish of beverages; let i = index" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < beverages.length - 1">
+                [divider]="i + 1 < beverages.length">
             </app-menu-item>
         </div>
     </section>
@@ -128,13 +129,15 @@
     <section class="contact">
         <h1>Contact</h1>
         <div class="divider"></div>
-        <h3><a href="tel:"> </a></h3>
-        <h3><a href="mailto:"> </a></h3>
+        <h3><a [href]="'tel:'+settings.phone">{{ settings.phone }}</a></h3>
+        <h3><a [href]="'mailto:'+settings.email">{{ settings.email }}</a></h3>
         <!-- Address -->
-        <h3><a href="http://" target="_blank" rel="noopener noreferrer">  </a></h3>
+        <h3><a href="http://" target="_blank" rel="noopener noreferrer">{{ settings.address }}</a></h3>
         <div class="social">
-            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
-            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
+            <a [href]="settings.facebookLink" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
+            <a [href]="settings.instagramLink" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
         </div>
     </section>
 </main>
+
+<app-footer></app-footer>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +8,16 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() checkout: boolean;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  get checkout(): boolean { 
-    return this.router.url === "/checkout";
+  onOrder() {
+    console.log("Here");
+    this.router.navigateByUrl('/order');
   }
 
 }

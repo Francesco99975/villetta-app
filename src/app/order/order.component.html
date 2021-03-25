@@ -1,15 +1,16 @@
+<app-header [checkout]="true"></app-header>
 <main>    
     <section *ngIf="specials.length > 0" class="specials ord-section">
         <h1>Specials Menu</h1>
     
-        <app-order-item 
-            *ngFor="let special of specials; let index"
+        <app-order-item class="wrap" 
+            *ngFor="let special of specials; let i = index"
             [id]="special.id" 
             [name]="special.name" 
             [description]="special.description"
-            [imageUrl]="special.image.url"
+            [imageUrl]="special.imageUrl"
             [price]="special.price"
-            [divider]="index < specials.length - 1">
+            [divider]="i + 1 < specials.length">
         </app-order-item>
     </section>
 
@@ -20,12 +21,12 @@
         <div *ngIf="antipasti.length > 0" class="course">
             <div class="course-title">Antipasto</div>
 
-            <app-order-item 
-                *ngFor="let dish of antipasti; let index" 
+            <app-order-item class="wrap" 
+                *ngFor="let dish of antipasti; let i = index" 
                 [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
                 [divider]="index < antipasti.length - 1">
             </app-order-item>
@@ -34,75 +35,76 @@
         <div *ngIf="primi.length > 0" class="course">
             <div class="course-title">Primo</div>
 
-            <app-order-item 
-                *ngFor="let dish of primi; let index"
+            <app-order-item class="wrap" 
+                *ngFor="let dish of primi; let i = index"
                 [id]="dish.id"  
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < primi.length - 1">
+                [divider]="i + 1 < primi.length">
             </app-order-item>
         </div>
 
         <div *ngIf="secondi.length > 0" class="course">
             <div class="course-title">Secondo</div>
 
-            <app-order-item 
-                *ngFor="let dish of secondi; let index" 
+            <app-order-item class="wrap" 
+                *ngFor="let dish of secondi; let i = index" 
                 [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < secondi.length - 1">
+                [divider]="i + 1 < secondi.length">
             </app-order-item>
         </div>
 
         <div *ngIf="pizze.length > 0" class="course">
             <div class="course-title">Pizza</div>
 
-            <app-order-item 
-                *ngFor="let dish of pizze; let index" 
+            <app-order-item class="wrap" 
+                *ngFor="let dish of pizze; let i = index" 
                 [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < pizze.length - 1">
+                [divider]="i + 1 < pizze.length">
             </app-order-item>
         </div>
 
         <div *ngIf="desserts.length > 0" class="course">
             <div class="course-title">Dessert</div>
 
-            <app-order-item 
-                *ngFor="let dish of desserts; let index" 
+            <app-order-item class="wrap" 
+                *ngFor="let dish of desserts; let i = index" 
                 [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < desserts.length - 1">
+                [divider]="i + 1 < desserts.length">
             </app-order-item>
         </div>
 
         <div *ngIf="beverages.length > 0" class="course">
             <div class="course-title">Beverage</div>
 
-            <app-order-item 
-                *ngFor="let dish of beverages; let index" 
+            <app-order-item class="wrap" 
+                *ngFor="let dish of beverages; let i = index" 
                 [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
-                [imageUrl]="dish.image.url"
+                [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
-                [divider]="index < beverages.length - 1">
+                [divider]="i + 1 < beverages.length">
             </app-order-item>
         </div>
         
     </section>
 </main>
+<app-footer></app-footer>
 
 
 

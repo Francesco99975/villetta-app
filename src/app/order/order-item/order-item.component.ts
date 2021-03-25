@@ -9,7 +9,7 @@ export class OrderItemComponent implements OnInit {
   @Input() id: number;
   @Input() name: string;
   @Input() description: string;
-  @Input() imagePath: string;
+  @Input() imageUrl: string;
   @Input() price: number;
   @Input() divider: boolean;
 
