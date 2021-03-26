@@ -21,4 +21,8 @@ export class DishesService {
   getDishes() {
     return this.dishes.slice();
   }
+
+  getDishById(id: number) {
+    return this.dishes.slice().find((dhs) => dhs.id == id);
+  }
 }

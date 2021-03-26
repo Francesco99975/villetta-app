@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { CartResolverService } from './shared/cart-resolver.service';
 import { DishesResolverService } from './shared/dishes-resolver.service';
 import { SettingsResolverService } from './shared/settings-resolver.service';
 
@@ -20,11 +21,12 @@ const routes: Routes = [
   {
     path: "order",
     loadChildren: () => import("./order/order.module").then((m) => m.OrderModule),
-    resolve: [DishesResolverService, SettingsResolverService]
+    resolve: [DishesResolverService, SettingsResolverService, CartResolverService]
   },
   {
     path: "checkout",
-    loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule) 
+    loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
+    resolve: [DishesResolverService, CartResolverService]
   }
 ];
 

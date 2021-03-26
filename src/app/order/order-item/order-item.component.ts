@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/shared/cart.service';
 
 @Component({
   selector: 'app-order-item',
@@ -15,14 +16,14 @@ export class OrderItemComponent implements OnInit {
 
   itemQuantity: number;
 
-  constructor() { }
+  constructor(private cart: CartService) { }
 
   ngOnInit(): void {
     this.itemQuantity = 1;
   }
 
   increment() {
-    if(this.itemQuantity <= 25) {
+    if(this.itemQuantity < 25) {
       this.itemQuantity++;
     }
   }
@@ -34,7 +35,7 @@ export class OrderItemComponent implements OnInit {
   }
 
   addToBag() {
-
+    this.cart.addToCart(this.id, this.itemQuantity).subscribe(() => console.log("Item added"));
   }
 
 }
