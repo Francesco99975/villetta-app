@@ -27,7 +27,7 @@
         </div>
 
         <div class="nav__actions">
-        <button *ngIf="checkout" [attr.data-count]="cartQuantity"  class="btn btn-checkout">
+        <button *ngIf="checkout" [attr.data-count]="cartQuantity"  class="btn btn-checkout" (click)="onCheckout()">
                 View Order
         </button>
 

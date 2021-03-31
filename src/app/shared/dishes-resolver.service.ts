@@ -15,7 +15,7 @@ export class DishesResolverService {
   
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
       if(this.dishes.getDishes().length <= 0) {
-        return this.http.get("http://127.0.0.1:8000/items").pipe(
+        return this.http.get("http://127.0.0.1:8000/items", {withCredentials: true}).pipe(
           map((items: any) => {
             return items['dishes'].map((itm: any) => {
               return new Dish({

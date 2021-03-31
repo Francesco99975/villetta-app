@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { Cart } from './models/cart.model';
-import {CookieService} from 'angular2-cookie/core';
+import { Cart, Item } from './models/cart.model';
+import {CookieService} from 'ngx-cookie-service';
+import { CartResolverService } from './cart-resolver.service';
+import { tap } from 'rxjs/operators';
+import { DishesService } from './dishes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +16,10 @@ export class CartService {
 
   onChange: Subject<Cart> = new Subject();
 
-  constructor(private http: HttpClient, private cookies: CookieService) { }
+  constructor(private http: HttpClient, private dishes: DishesService) {}
 
   set(cart: Cart) {
     this.cart = cart;
-    console.log(this.cart);
   }
 
   get() {
@@ -25,16 +27,32 @@ export class CartService {
   }
 
   addToCart(id: number, quantity: number) {
-    return this.http.post(`http://127.0.0.1:8000/add-to-bag/${id}`, {quantity}, {
-      headers: new HttpHeaders({
-        'X-CSRFToken': this.cookies.get('csrftoken')
-      })
-    });
+    return this.http.post(`http://127.0.0.1:8000/add-to-bag/${id}`, {quantity}, {withCredentials: true})
+      .pipe(
+        tap(() => this.cart.add(
+              new Item({
+              product: this.dishes.getDishById(id),
+              quantity: quantity
+            })
+          )
+        ),
+        tap(() => this.onChange.next(this.cart))
+      );
   }
 
   removeFromCart(id: number) {
-    return this.http.delete(`http://127.0.0.1:8000/remove-from-bag/${id}`);
+    return this.http.delete(`http://127.0.0.1:8000/remove-from-bag/${id}`, {withCredentials: true})
+    .pipe(
+      tap(() => this.cart.remove(id)),
+      tap(() => this.onChange.next(this.cart))
+    );
   }
 
-  
+  clearCart() {
+    return this.http.get('http://127.0.0.1:8000/clear-bag', {withCredentials: true})
+    .pipe(
+      tap(() => this.cart.clear()),
+      tap(() => this.onChange.next(this.cart))
+    );
+  }
 }

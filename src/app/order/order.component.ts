@@ -17,7 +17,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dishes = this.dishesService.getDishes();
-    console.log(this.dishes[0].imageUrl);
     this.sub = this.dishesService.onChange.subscribe(dhs => this.dishes = dhs);
   }
 

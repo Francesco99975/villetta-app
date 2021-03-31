@@ -1,28 +1,132 @@
-<button class="back-btn">
+<div class="wrapper">
+    <button class="back-btn" (click)="onBack()">
         <i class="fas fa-arrow-left"></i>
-</button>
-<header class="order-header">
-    <h1>Your Order</h1>
-</header>
+    </button>
+    <header class="order-header">
+        <h1>Your Order</h1>
+    </header>
 
 
-<main class="bag-container">
-    <div *ngIf="cart.count > 0" class="bag-wrapper">
-        <button class="clear-btn">Clear Order</button>
-        <ul class="order-list">  
-            <li *ngFor="let item of cart.items" class="order-item">
-                <div class="order-details">
-                    <span>{{ item.quantity }}x. {{ item.product }}</span>
-                    <span>${{ item.subtotal }}</span>
+    <main class="bag-container">
+        <div *ngIf="cart.quantity > 0" class="bag-wrapper">
+            <button class="clear-btn" (click)="onClear()">Clear Order</button>
+            <ul class="order-list">  
+                <li *ngFor="let item of cart.items; let i = index" class="order-item">
+                    <div class="order-details">
+                        <span>{{ item.quantity }}x. {{ item.product.name }}</span>
+                        <span>${{ item.subtotal }}</span>
+                    </div>
+                    <button class="remove-btn" (click)="onRemove(i)">
+                        <i class="fas fa-minus-circle"></i>
+                    </button>
+                </li>       
+            </ul>
+            <h2 class="order-tot">Total: ${{ cart.total }}</h2>
+            
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="details">
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('firstname').errors && error}">
+                        <input type="text" name="fn" id="fn" formControlName="firstname" required>
+                        <span class="omrs-input-label">Firstname</span>
+                        <span *ngIf="form.get('firstname').errors && error" class="omrs-input-helper">{{ error }}</span>
+                    </label>
                 </div>
-                <button class="remove-btn">
-                    <i class="fas fa-minus-circle"></i>
-                </button>
-            </li>       
-        </ul>
-        <h2 class="order-tot">Total: ${{ cart.total }}</h2>
-        <button class="continue-btn">Continue</button>
-    </div>
 
-    <h1 *ngIf="cart.count < 1" class="empty-msg">The bag is empty!</h1>
-</main>
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('lastname').errors && error}">
+                        <input type="text" name="ln" id="ln" formControlName="lastname" required>
+                        <span class="omrs-input-label">Lastname</span>
+                        <span *ngIf="form.get('lastname').errors && error" class="omrs-input-helper">{{ error }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('address').errors && error}">
+                        <input type="text" name="address" id="address" formControlName="address" required>
+                        <span class="omrs-input-label">Address</span>
+                        <span *ngIf="form.get('address').errors && error" class="omrs-input-helper">{{ error }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('email').errors && error}">
+                        <input type="email" name="email" id="email" formControlName="email" required>
+                        <span class="omrs-input-label">Email</span>
+                        <span *ngIf="form.get('email').errors && error" class="omrs-input-helper">{{ error }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('phone').errors && error}">
+                        <input type="text" name="phone" id="phone" formControlName="phone" required>
+                        <span class="omrs-input-label">Phone</span>
+                        <span *ngIf="form.get('phone').errors && error" class="omrs-input-helper">{{ error }}</span>
+                    </label>
+                </div>
+
+                <div class="radio-tile-group">
+                    <div class="input-container">
+                        <input id="bike" checked class="radio-button" type="radio" name="pickup" value="p" formControlName="pickup"/>
+                        <div class="radio-tile">
+                          <div class="icon bike-icon">
+                            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm5.8-10l2.4-2.4.8.8c1.3 1.3 3 2.1 5.1 2.1V9c-1.5 0-2.7-.6-3.6-1.5l-1.9-1.9c-.5-.4-1-.6-1.6-.6s-1.1.2-1.4.6L7.8 8.4c-.4.4-.6.9-.6 1.4 0 .6.2 1.1.6 1.4L11 14v5h2v-6.2l-2.2-2.3zM19 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/>
+                            </svg>
+                          </div>
+                          <label for="bike" class="radio-tile-label">Pickup</label>
+                        </div>
+                      </div>
+                  
+                      <div class="input-container">
+                        <input id="drive" class="radio-button" type="radio" name="pickup" value="d" formControlName="pickup"/>
+                        <div class="radio-tile">
+                          <div class="icon car-icon">
+                            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                              <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                          </div>
+                          <label for="drive" class="radio-tile-label">Delivery</label>
+                        </div>
+                      </div>
+                </div>
+
+                <h3 class="tip">TIP</h3>
+
+                <div class='vertical-align'>
+                    <div class='btns'>
+                      <label>
+                        <input checked='' name='tip' type='radio' value='5' formControlName="tip">
+                          <span class='btn first'>5%</span>
+                       
+                      </label>
+                      <label>
+                        <input name='tip' type='radio' value='10' formControlName="tip">
+                          <span class='btn'>10%</span>
+                       
+                      </label>
+                      <label>
+                        <input name='tip' type='radio' value='20' formControlName="tip">
+                          <span class='btn'>20%</span>
+                       
+                      </label>
+                      <label>
+                        <input name='tip' type='radio' value='50' formControlName="tip">
+                          <span class='btn'>50%</span>
+                      
+                      </label>
+                      <label>
+                        <input name='tip' type='radio' value='100' formControlName="tip">
+                          <span class='btn last'>100%</span>
+                      </label>
+                    </div>
+                  </div>
+
+                <button type="submit" class="continue-btn">Place Order</button>
+            </form>
+        </div>
+
+        <h1 *ngIf="cart.quantity < 1" class="empty-msg">The bag is empty!</h1>
+    </main>
+</div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { CartResolverService } from './shared/cart-resolver.service';
 import { DishesResolverService } from './shared/dishes-resolver.service';
+import { ItemsCartResolverService } from './shared/items-cart-resolver.service';
 import { SettingsResolverService } from './shared/settings-resolver.service';
 
 const routes: Routes = [
@@ -31,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private cart: CartService) { }
 
   ngOnInit(): void {
-    this.cartQuantity = this.cart.get().quantity;
+    if(this.cart.get() != null) {
+      this.cartQuantity = this.cart.get().quantity;
+    }
     this.sub = this.cart.onChange.subscribe((newCart: Cart) => {
       this.cartQuantity = newCart.quantity;
     });
@@ -31,6 +33,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onOrder() {
     this.router.navigateByUrl('/order');
+  }
+
+  onCheckout() {
+    this.router.navigateByUrl('/checkout');
   }
 
 }

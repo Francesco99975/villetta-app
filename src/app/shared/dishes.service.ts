@@ -23,6 +23,6 @@ export class DishesService {
   }
 
   getDishById(id: number) {
-    return this.dishes.slice().find((dhs) => dhs.id == id);
+    return this.dishes.slice().find((dhs) => dhs.id == id) || console.log("Not Found!");
   }
 }

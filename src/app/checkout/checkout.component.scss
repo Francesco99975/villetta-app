@@ -1,10 +1,21 @@
-body {
-  font-family: "OleoScript", sans-serif, monospace;
-  background-color: #083995 !important;
+.wrapper {
+  width: 100%;
   position: relative;
 }
+
+body {
+  font-family: "OleoScript", sans-serif, monospace;
+}
+
 main {
   grid-area: none;
+}
+.bag-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .order-header {
   display: flex;
@@ -38,6 +49,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
   i {
     color: #d0e025;
     font-size: 1.5rem;
@@ -48,11 +60,11 @@ main {
   font-size: 1.7rem;
 }
 .bag-container {
-  width: 65%;
+  width: 100%;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
   background-color: #fffdd0;
-  border-radius: 25px;
+  border-radius: 25px 25px 0px 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -71,6 +83,7 @@ main {
   border: none;
   text-align: center;
   font-size: 1.3rem;
+  outline: none;
 }
 .order-list {
   width: 80%;
@@ -105,6 +118,7 @@ main {
   cursor: pointer;
   border: none;
   text-align: center;
+  outline: none;
   i {
     color: white;
   }
@@ -125,4 +139,356 @@ main {
   border: none;
   text-align: center;
   font-size: 1.3rem;
+  outline: none;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+// Input Text SCSS
+
+/** END: Non Openmrs CSS **/
+div.omrs-input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 50%;
+}
+
+/* Input*/
+.omrs-input-underlined > input,
+.omrs-input-filled > input {
+  border: none;
+  border-bottom: 0.125rem solid #083995;
+  width: 100%;
+  height: 2.9rem;
+  font-size: 1.0625rem;
+  padding-left: 0.875rem;
+  line-height: 147.6%;
+  padding-top: 0.825rem;
+  padding-bottom: 0.5rem;
+}
+
+.omrs-input-underlined > input:focus,
+.omrs-input-filled > input:focus {
+  outline: none;
+}
+
+.omrs-input-underlined > .omrs-input-label,
+.omrs-input-filled > .omrs-input-label {
+  position: absolute;
+  top: 0.9375rem;
+  left: 0.875rem;
+  line-height: 147.6%;
+  color: #083995;
+  transition: top 0.2s;
+}
+
+// .omrs-input-underlined > svg,
+// .omrs-input-filled > svg {
+//   position: absolute;
+//   top: 0.9375rem;
+//   right: 0.875rem;
+//   fill: var(--omrs-color-ink-medium-contrast);
+// }
+
+.omrs-input-underlined > .omrs-input-helper,
+.omrs-input-filled > .omrs-input-helper {
+  font-size: 0.9375rem;
+  color: #083995;
+  letter-spacing: 0.0275rem;
+  margin: 0.125rem 0.875rem;
+}
+
+.omrs-input-underlined > input:hover,
+.omrs-input-filled > input:hover {
+  border-color: #d0e025;
+}
+
+.omrs-input-underlined > input:focus + .omrs-input-label,
+.omrs-input-underlined > input:valid + .omrs-input-label,
+.omrs-input-filled > input:focus + .omrs-input-label,
+.omrs-input-filled > input:valid + .omrs-input-label {
+  top: 0;
+  font-size: 0.9375rem;
+  margin-bottom: 32px;
+}
+
+.omrs-input-underlined:not(.omrs-input-danger)
+  > input:focus
+  + .omrs-input-label,
+.omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
+  color: #083995;
+}
+
+.omrs-input-underlined:not(.omrs-input-danger) > input:focus,
+.omrs-input-filled:not(.omrs-input-danger) > input:focus {
+  border-color: #083995;
+}
+
+// .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
+// .omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
+//   fill: var(--omrs-color-ink-high-contrast);
+// }
+
+/** DISABLED **/
+.omrs-input-underlined > input:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+.omrs-input-underlined > input:disabled + .omrs-input-label,
+.omrs-input-underlined > input:disabled ~ .omrs-input-helper {
+  color: gray;
+}
+
+// .omrs-input-underlined > input:disabled ~ svg {
+//   fill: var(--omrs-color-ink-low-contrast);
+// }
+
+/** DANGER **/
+.omrs-input-underlined.omrs-input-danger > .omrs-input-label,
+.omrs-input-underlined.omrs-input-danger > .omrs-input-helper,
+.omrs-input-filled.omrs-input-danger > .omrs-input-label,
+.omrs-input-filled.omrs-input-danger > .omrs-input-helper {
+  color: red;
+}
+
+// .omrs-input-danger > svg {
+//   fill: var(--omrs-color-danger);
+// }
+
+.omrs-input-danger > input {
+  border-color: red;
+}
+
+.omrs-input-underlined > input {
+  background: transparent;
+}
+
+.omrs-input-filled > input {
+  background: transparent;
+}
+
+// Tip Radio Buttons
+
+.tip {
+  font-size: 1.5rem;
+  color: #083995;
+}
+
+.vertical-align {
+  display: table-cell;
+  vertical-align: middle;
+}
+.button-link {
+  text-decoration: none;
+}
+.btns {
+  background-color: #ff9035;
+  background-image: linear-gradient(
+    180deg,
+    #ff5a64 0%,
+    #faa04b 30%,
+    #d2dc69 70%,
+    #0ef49b 100%
+  );
+  z-index: 0;
+  float: none;
+  margin: 0 auto;
+  width: 200px;
+  max-width: 100%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 4px -1px rgba(25, 25, 25, 0.2);
+  input {
+    display: none;
+    &:checked {
+      + {
+        .btn {
+          color: #5f6982;
+          text-shadow: none;
+          background-image: linear-gradient(
+            to top,
+            rgba(25, 25, 25, 0) 65%,
+            rgba(25, 25, 25, 0.08)
+          );
+          box-shadow: inset 0 10px 50px rgba(25, 25, 25, 0.08);
+          transition: color 500ms cubic-bezier(0.165, 0.84, 0.44, 1),
+            box-shadow 150ms;
+          &:after {
+            margin-left: 12px;
+            transform: scale(1.25);
+            transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275)
+                250ms,
+              margin 500ms;
+          }
+        }
+      }
+    }
+  }
+  label {
+    display: table;
+    float: left;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    &:first-child {
+      border-left: none;
+      border-radius: 40px 0 0 40px;
+    }
+    &:last-child {
+      border-radius: 0 40px 40px 0;
+    }
+  }
+  .btn {
+    font-size: 19px;
+    cursor: pointer;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: 300;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    box-shadow: inset 0 30px 20px -20px rgba(255, 255, 255, 0.15);
+    transition: color 250ms cubic-bezier(0.165, 0.84, 0.44, 1),
+      box-shadow 250ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    &:hover {
+      box-shadow: inset 0 30px 30px -20px rgba(50, 50, 50, 0.02);
+      transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    &:after {
+      content: "✔";
+      margin-left: -10px;
+      display: inline-block;
+      transform: scale(0);
+      transition: margin 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045) 100ms,
+        transform 250ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    }
+  }
+  .first {
+    border-radius: 70px 70px 40px 40px;
+  }
+  .last {
+    border-radius: 40px 40px 70px 70px;
+  }
+}
+
+// Delivery Radio
+
+$primary-color: #079ad9;
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  //set dimensions for invisible container
+  .input-container {
+    position: relative;
+    height: 7rem;
+    width: 7rem;
+    margin: 0.5rem;
+
+    //make actual radio input invisible
+    // + stretch to fill container
+    .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    //default tile styles
+    .radio-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: 2px solid $primary-color;
+      border-radius: 5px;
+      padding: 1rem;
+      transition: transform 300ms ease;
+    }
+    .icon svg {
+      fill: $primary-color;
+      width: 3rem;
+      height: 3rem;
+    }
+    .radio-tile-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $primary-color;
+    }
+
+    //active tile styles
+    .radio-button:checked + .radio-tile {
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: white;
+      transform: scale(1.1, 1.1);
+
+      .icon svg {
+        fill: white;
+        background-color: $primary-color;
+      }
+      .radio-tile-label {
+        color: white;
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+@media (min-width: 55rem) {
+  .bag-container {
+    width: 85%;
+  }
+
+  .order-header h1 {
+    font-size: 3.7rem;
+  }
+
+  .btns {
+    background-image: linear-gradient(
+      100deg,
+      #ff5a64 0%,
+      #faa04b 30%,
+      #d2dc69 70%,
+      #0ef49b 100%
+    );
+    height: 80px;
+    width: 500px;
+    display: block;
+
+    label {
+      width: 20%;
+      border-left: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .first {
+      border-radius: 40px 0 0 40px;
+    }
+
+    .last {
+      border-radius: 0 40px 40px 0;
+    }
+  }
 }

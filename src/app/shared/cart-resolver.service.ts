@@ -16,14 +16,10 @@ export class CartResolverService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if(this.cartService.get() == null) {
-      return this.http.get("http://127.0.0.1:8000/cart-items").pipe(
+      return this.http.get("http://127.0.0.1:8000/cart-items", {withCredentials: true}).pipe(
         map((res: any) => {
           return {
             'cart': JSON.parse(res['cart']),
-            'items': JSON.parse(res['items']),
-            'quantity': res['quantity'],
-            'unique_quantity': res['unique_quantity'],
-            'total': res['total']
           }
         }),
         map((cartData: any) => {
@@ -35,12 +31,7 @@ export class CartResolverService {
             }));
           });
 
-          return new Cart({
-            items: cartItems,
-            quantity: cartData['quantity'],
-            uniqueQuantity: cartData['unique_quantity'],
-            total: cartData['total']
-          });
+          return new Cart(cartItems);
         }),
         tap((newCart: Cart) => this.cartService.set(newCart))
       );
