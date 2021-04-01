@@ -64,6 +64,8 @@
                     </label>
                 </div>
 
+                <h3 class="tip" *ngIf="!homeDelivery">Only pickup orders available at this time</h3>
+
                 <div class="radio-tile-group">
                     <div class="input-container">
                         <input id="bike" checked class="radio-button" type="radio" name="pickup" value="p" formControlName="pickup"/>
@@ -78,7 +80,7 @@
                         </div>
                       </div>
                   
-                      <div class="input-container">
+                      <div class="input-container" *ngIf="homeDelivery">
                         <input id="drive" class="radio-button" type="radio" name="pickup" value="d" formControlName="pickup"/>
                         <div class="radio-tile">
                           <div class="icon car-icon">

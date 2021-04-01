@@ -4,6 +4,7 @@ export class Settings {
     address: string;
     facebookLink: string;
     instagramLink: string;
+    homeDelivery: boolean;
 
     monOpn: string;
     monCls: string;
@@ -26,6 +27,7 @@ export class Settings {
         address,
         facebookLink,
         instagramLink,
+        homeDelivery,
         monOpn,
         monCls,
         tueOpn,
@@ -46,6 +48,7 @@ export class Settings {
         this.address = address;
         this.facebookLink = facebookLink;
         this.instagramLink = instagramLink;
+        this.homeDelivery = homeDelivery;
         this.monOpn = monOpn;
         this.monCls = monCls;
         this.tueOpn = tueOpn;

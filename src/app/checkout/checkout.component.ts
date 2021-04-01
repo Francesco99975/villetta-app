@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../shared/cart.service';
 import { Cart } from '../shared/models/cart.model';
+import { SettingsService } from '../shared/settings.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,14 +15,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   cart: Cart;
   sub: Subscription;
+  homeDelivery: boolean;
 
   form: FormGroup;
   error: string;
 
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(private cartService: CartService, private settings: SettingsService, private router: Router) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.get();
+    this.homeDelivery = this.settings.get().homeDelivery;
     this.sub = this.cartService.onChange.subscribe((newCart: Cart) => {
       this.cart = newCart;
     });

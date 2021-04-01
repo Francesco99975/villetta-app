@@ -23,6 +23,7 @@ export class SettingsResolverService {
             address: item['fields']['address'],
             facebookLink: item['fields']['facebook_link'],
             instagramLink: item['fields']['instagram_link'],
+            homeDelivery: item['fields']['home_delivery_available'],
             monOpn: item['fields']['monday_opening_time'],
             monCls: item['fields']['monday_closing_time'],
             tueOpn: item['fields']['tuesday_opening_time'],
