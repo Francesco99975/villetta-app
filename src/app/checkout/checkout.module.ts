@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgxStripeModule } from "ngx-stripe";
+import { environment } from "../../environments/environment";
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     ReactiveFormsModule,
     CheckoutRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxStripeModule.forRoot(environment.STRIPE_PUBLIC_API_KEY)
   ]
 })
 export class CheckoutModule { }

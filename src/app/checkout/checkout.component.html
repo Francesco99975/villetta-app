@@ -125,6 +125,14 @@
                     </div>
                   </div>
 
+                  <h3 class="tip">Payment Info</h3>
+
+                  <ngx-stripe-card
+                    class="card-details"
+                    [options]="cardOptions"
+                    [elementsOptions]="elementsOptions"
+                  ></ngx-stripe-card>
+
                 <button type="submit" class="continue-btn">Place Order</button>
             </form>
         </div>

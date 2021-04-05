@@ -277,13 +277,15 @@ div.omrs-input-group {
 // Tip Radio Buttons
 
 .tip {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #083995;
+  text-align: center;
 }
 
 .vertical-align {
   display: table-cell;
   vertical-align: middle;
+  margin-bottom: 0.5rem;
 }
 .button-link {
   text-decoration: none;
@@ -457,6 +459,13 @@ $primary-color: #079ad9;
   }
 }
 
+.card-details {
+  margin: 0.5rem;
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid #083995;
+}
+
 @media (min-width: 55rem) {
   .bag-container {
     width: 85%;
@@ -490,5 +499,10 @@ $primary-color: #079ad9;
     .last {
       border-radius: 0 40px 40px 0;
     }
+  }
+
+  .card-details {
+    margin: 2.5rem;
+    width: 50%;
   }
 }
