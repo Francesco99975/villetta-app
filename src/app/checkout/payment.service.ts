@@ -11,7 +11,6 @@ interface Order {
   phone: string;
   pickup: boolean;
   tip: number;
-  eta: string;
   quantity: number;
   uniqueQuantity: number;
   total: number; 

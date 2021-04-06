@@ -106,7 +106,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             phone: this.form.get('phone').value,
             pickup: this.form.get('pickup').value == 'p' ? true: false,
             tip: this.form.get('tip').value, 
-            eta: '35:00', 
             quantity: this.cart.quantity, 
             uniqueQuantity: this.cart.uniqueQuantity,
             total: this.cart.total,
