@@ -27,6 +27,14 @@ const routes: Routes = [
     path: "checkout",
     loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
     resolve: [CartResolverService, SettingsResolverService]
+  },
+  {
+    path: "failed",
+    loadChildren: () => import("./fail-screen/fail-screen.module").then(m => m.FailScreenModule)
+  },
+  {
+    path: "success",
+    loadChildren: () => import("./success-screen/success-screen.module").then(m => m.SuccessScreenModule)
   }
 ];
 

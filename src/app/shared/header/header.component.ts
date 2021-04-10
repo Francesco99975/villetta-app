@@ -31,6 +31,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  onOpenNav() {
+    document.querySelector('.backdrop').classList.add('open');
+    document.querySelector('.mobile-nav').classList.add('open');
+  }
+
+  onCloseNav() {
+    document.querySelector('.mobile-nav').classList.remove('open');
+    document.querySelector('.backdrop').classList.remove('open');
+  }
+
   onOrder() {
     this.router.navigateByUrl('/order');
   }

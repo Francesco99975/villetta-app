@@ -40,6 +40,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   cart: Cart;
   sub: Subscription;
   homeDelivery: boolean;
+  isLoading: boolean;
 
   form: FormGroup;
   error: string;
@@ -52,6 +53,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.isLoading = false;
     this.cart = this.cartService.get();
     this.homeDelivery = this.settings.get().homeDelivery;
     this.sub = this.cartService.onChange.subscribe((newCart: Cart) => {
@@ -94,27 +96,42 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if(this.form.valid) {
+      this.isLoading = true;
       const name = this.form.get('firstname').value + ' ' + this.form.get('lastname').value;
-      this.stripeService.createToken(this.card.element, {name}).subscribe((res) => {
-        if(res.token) {
-          this.payment.getStripeSession({
-            items: this.cart.items, 
-            firstname: this.form.get('firstname').value,
-            lastname: this.form.get('lastname').value,
-            email: this.form.get('email').value,
-            address: this.form.get('address').value,
-            phone: this.form.get('phone').value,
-            pickup: this.form.get('pickup').value == 'p' ? true: false,
-            tip: this.form.get('tip').value, 
-            quantity: this.cart.quantity, 
-            uniqueQuantity: this.cart.uniqueQuantity,
-            total: this.cart.total,
-            tokenId: res.token.id
-          }).subscribe((res) => console.log(res));
-        } else {
-          console.log('Token Error');
-        }
-      });
+      try {
+        this.stripeService.createToken(this.card.element, {name}).subscribe((res) => {
+          if(res.token) {
+            this.payment.getStripeSession({
+              items: this.cart.items, 
+              firstname: this.form.get('firstname').value,
+              lastname: this.form.get('lastname').value,
+              email: this.form.get('email').value,
+              address: this.form.get('address').value,
+              phone: this.form.get('phone').value,
+              pickup: this.form.get('pickup').value == 'p' ? true: false,
+              tip: this.form.get('tip').value, 
+              quantity: this.cart.quantity, 
+              uniqueQuantity: this.cart.uniqueQuantity,
+              total: this.cart.total,
+              tokenId: res.token.id
+            }).subscribe((res: any) => {
+              console.log(res);
+              this.cartService.clearCart().subscribe(() => {
+                this.router.navigateByUrl('/success', {replaceUrl: true, state: {eta: res.eta}});
+              });
+            }, (err: any) => {
+              console.log(err);
+              this.router.navigateByUrl('/failed', {replaceUrl: true, state: {error: err}});
+            });
+          } else {
+            console.log('Token Error');
+            this.isLoading = false;
+          }
+        });
+      } catch (error) {
+        console.log(error.message);
+        this.isLoading = false;
+      }
     } else {
       this.error = 'Invalid Field';
     }
