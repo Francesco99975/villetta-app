@@ -35,7 +35,12 @@ export class OrderItemComponent implements OnInit {
   }
 
   addToBag() {
-    this.cart.addToCart(this.id, this.itemQuantity).subscribe(() => console.log("Item added"));
+    this.cart.addToCart(this.id, this.itemQuantity).subscribe((res: any) => {
+      console.log("Item added");
+      document.querySelector('.message').innerHTML = res.message;
+      document.querySelector('.messages').classList.add('msg-open');
+      setTimeout(() => document.querySelector('.messages').classList.remove('msg-open'), 3000);
+    });
   }
 
 }
