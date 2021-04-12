@@ -11,6 +11,8 @@ interface Order {
   phone: string;
   pickup: boolean;
   tip: number;
+  homeDeliveryCost: number;
+  orderPreparationTime: number;
   quantity: number;
   uniqueQuantity: number;
   total: number; 

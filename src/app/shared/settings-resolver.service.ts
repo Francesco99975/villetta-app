@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { tap, map } from "rxjs/operators";
 import { SettingsService } from './settings.service';
 import { Settings } from "./models/settings.model"
@@ -10,7 +10,7 @@ import { Settings } from "./models/settings.model"
 })
 export class SettingsResolverService {
 
-  constructor(private http: HttpClient, private settings: SettingsService) { }
+  constructor(private http: HttpClient, private settings: SettingsService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if(this.settings.get() == null) {
@@ -18,12 +18,15 @@ export class SettingsResolverService {
         map((res: any) => JSON.parse(res['settings'])[0]),
         map((item: any) => {
           return new Settings({
+            websiteAvailable: item['fields']['website_available'],
             phone: item['fields']['telephone_number'],
             email: item['fields']['email'],
             address: item['fields']['address'],
             facebookLink: item['fields']['facebook_link'],
             instagramLink: item['fields']['instagram_link'],
             homeDelivery: item['fields']['home_delivery_available'],
+            homeDeliveryCost: item['fields']['home_delivery_cost'],
+            orderPreparationTime: item['fields']['order_preparation_time_in_minutes'],
             monOpn: item['fields']['monday_opening_time'],
             monCls: item['fields']['monday_closing_time'],
             tueOpn: item['fields']['tuesday_opening_time'],
@@ -39,6 +42,11 @@ export class SettingsResolverService {
             sunOpn: item['fields']['sunday_opening_time'],
             sunCls: item['fields']['sunday_closing_time']
           });
+        }),
+        tap((settings: Settings) => {
+          if(!settings.websiteAvailable) {
+            this.router.navigateByUrl('/unavailable', {replaceUrl: true});
+          }
         }),
         tap((settings: Settings) => this.settings.set(settings))
       );

@@ -67,14 +67,14 @@
                 <li *ngFor="let item of cart.items; let i = index" class="order-item">
                     <div class="order-details">
                         <span>{{ item.quantity }}x. {{ item.product.name }}</span>
-                        <span>${{ item.subtotal }}</span>
+                        <span>{{ item.subtotal | currency }}</span>
                     </div>
                     <button class="remove-btn" (click)="onRemove(i)">
                         <i class="fas fa-minus-circle"></i>
                     </button>
                 </li>       
             </ul>
-            <h2 class="order-tot">Total: ${{ cart.total }}</h2>
+            <h2 class="order-tot">Total: {{ cart.total | currency }}</h2>
             
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="details">
                 <div class="omrs-input-group">

@@ -4,20 +4,21 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CartResolverService } from './shared/cart-resolver.service';
 import { DishesResolverService } from './shared/dishes-resolver.service';
 import { SettingsResolverService } from './shared/settings-resolver.service';
+import { UnavailableComponent } from './unavailable/unavailable.component';
 
 const routes: Routes = [
   {
-    path: "", redirectTo: "/home", pathMatch: "full",
+    path: "", redirectTo: "/home", pathMatch: "full"
   },
   {
     path: "home",
     loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
-    resolve: [DishesResolverService, SettingsResolverService]
+    resolve: [DishesResolverService, SettingsResolverService],
   },
   {
     path: "party",
     loadChildren: () => import("./party/party.module").then((m) => m.PartyModule),
-    resolve: [DishesResolverService, SettingsResolverService]
+    resolve: [DishesResolverService, SettingsResolverService],
   },
   {
     path: "order",
@@ -31,11 +32,17 @@ const routes: Routes = [
   },
   {
     path: "failed",
-    loadChildren: () => import("./fail-screen/fail-screen.module").then(m => m.FailScreenModule)
+    loadChildren: () => import("./fail-screen/fail-screen.module").then(m => m.FailScreenModule),
+    resolve: [SettingsResolverService]
   },
   {
     path: "success",
-    loadChildren: () => import("./success-screen/success-screen.module").then(m => m.SuccessScreenModule)
+    loadChildren: () => import("./success-screen/success-screen.module").then(m => m.SuccessScreenModule),
+    resolve: [SettingsResolverService]
+  },
+  {
+    path: "unavailable",
+    component: UnavailableComponent
   },
   {
     path: "**",

@@ -2,13 +2,13 @@
     <div class="info">
         <div class="open-hours">
             <h1>Opening Hours</h1>
-            <h3>Monday: {{ settings.monOpn }} - {{ settings.monCls }}</h3>
-            <h3>Tuesday: {{ settings.tueOpn }} - {{ settings.tueCls }}</h3>
-            <h3>Wednesday: {{ settings.wedOpn }} - {{ settings.wedCls }}</h3>
-            <h3>Thursday: {{ settings.thuOpn }} - {{ settings.thuCls }}</h3>
-            <h3>Friday: {{ settings.friOpn }} - {{ settings.firCls }}</h3>
-            <h3>Saturday: {{ settings.satOpn }} - {{ settings.satCls }}</h3>
-            <h3>Sunday: {{ settings.sunOpn }} - {{ settings.sunCls }}</h3>
+            <h3>Monday: {{ settings.monOpn | date: "h:mm a"}} - {{ settings.monCls | date: "h:mm a"}}</h3>
+            <h3>Tuesday: {{ settings.tueOpn | date: "h:mm a"}} - {{ settings.tueCls | date: "h:mm a"}}</h3>
+            <h3>Wednesday: {{ settings.wedOpn | date: "h:mm a"}} - {{ settings.wedCls | date: "h:mm a"}}</h3>
+            <h3>Thursday: {{ settings.thuOpn | date: "h:mm a"}} - {{ settings.thuCls | date: "h:mm a"}}</h3>
+            <h3>Friday: {{ settings.friOpn | date: "h:mm a"}} - {{ settings.firCls | date: "h:mm a"}}</h3>
+            <h3>Saturday: {{ settings.satOpn | date: "h:mm a"}} - {{ settings.satCls | date: "h:mm a"}}</h3>
+            <h3>Sunday: {{ settings.sunOpn | date: "h:mm a"}} - {{ settings.sunCls | date: "h:mm a"}}</h3>
         </div>
 
         <div class="footer__logo">
