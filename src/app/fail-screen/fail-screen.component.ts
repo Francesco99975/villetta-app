@@ -11,7 +11,10 @@ export class FailScreenComponent {
   error: string;
 
   constructor(private router: Router) {
-    this.error = window.history.state.error.message;
+    this.error = window.history.state.error;
+    if(this.error.trim() == '') {
+      this.error = 'Unknown Error Occurred. We are sorry.'
+    }
   }
 
 

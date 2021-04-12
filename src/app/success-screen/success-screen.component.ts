@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 export class SuccessScreenComponent {
 
   eta: string;
+  pickup: boolean;
 
   constructor(private router: Router) { 
     this.eta = window.history.state.eta;
+    this.pickup = window.history.state.pickup;
   }
 
   onDone() {

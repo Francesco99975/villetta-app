@@ -1,3 +1,10 @@
+<div class="backdrop" *ngIf="errorAlert" (click)="onDismissed()"></div>
+<div class="modal" *ngIf="errorAlert">
+  <h1 class="error-title">Something went wrong!</h1>
+  <div class="error-msg">{{ errorAlert }}</div>
+  <button class="dismiss-error" (click)="onDismissed()">Dismiss</button>
+</div>
+
 <div class="loading-container" *ngIf="isLoading">
   <div class="loadingio-spinner-eclipse-xuonbou5rb">
     <div class="ldio-t9kn6m430qe">
@@ -71,42 +78,42 @@
             
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="details">
                 <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('firstname').errors && error}">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('firstname').errors && formError}">
                         <input type="text" name="fn" id="fn" formControlName="firstname" required>
                         <span class="omrs-input-label">Firstname</span>
-                        <span *ngIf="form.get('firstname').errors && error" class="omrs-input-helper">{{ error }}</span>
+                        <span *ngIf="form.get('firstname').errors && formError" class="omrs-input-helper">{{ error[0] }}</span>
                     </label>
                 </div>
 
                 <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('lastname').errors && error}">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('lastname').errors && formError}">
                         <input type="text" name="ln" id="ln" formControlName="lastname" required>
                         <span class="omrs-input-label">Lastname</span>
-                        <span *ngIf="form.get('lastname').errors && error" class="omrs-input-helper">{{ error }}</span>
+                        <span *ngIf="form.get('lastname').errors && formError" class="omrs-input-helper">{{ error[1] }}</span>
                     </label>
                 </div>
 
                 <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('address').errors && error}">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('address').errors && formError}">
                         <input type="text" name="address" id="address" formControlName="address" required>
                         <span class="omrs-input-label">Address</span>
-                        <span *ngIf="form.get('address').errors && error" class="omrs-input-helper">{{ error }}</span>
+                        <span *ngIf="form.get('address').errors && formError" class="omrs-input-helper">{{ error[2] }}</span>
                     </label>
                 </div>
 
                 <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('email').errors && error}">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('email').errors && formError}">
                         <input type="email" name="email" id="email" formControlName="email" required>
                         <span class="omrs-input-label">Email</span>
-                        <span *ngIf="form.get('email').errors && error" class="omrs-input-helper">{{ error }}</span>
+                        <span *ngIf="form.get('email').errors && formError" class="omrs-input-helper">{{ error[3] }}</span>
                     </label>
                 </div>
 
                 <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('phone').errors && error}">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('phone').errors && formError}">
                         <input type="text" name="phone" id="phone" formControlName="phone" required>
                         <span class="omrs-input-label">Phone</span>
-                        <span *ngIf="form.get('phone').errors && error" class="omrs-input-helper">{{ error }}</span>
+                        <span *ngIf="form.get('phone').errors && formError" class="omrs-input-helper">{{ error[4] }}</span>
                     </label>
                 </div>
 

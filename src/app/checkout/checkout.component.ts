@@ -43,7 +43,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isLoading: boolean;
 
   form: FormGroup;
-  error: string;
+  formError: boolean;
+  error: string[];
+  errorAlert: string;
 
   constructor(
     private cartService: CartService, 
@@ -54,6 +56,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = false;
+    this.error = [
+      'Firstname must not be empty!',
+      'Lastname must not be empty!',
+      'Address must not be empty!',
+      'Email must not be empty and formatted correctly',
+      'Phone number must not be empty!'
+    ];
+    this.formError = false;
+    this.errorAlert = null;
     this.cart = this.cartService.get();
     this.homeDelivery = this.settings.get().homeDelivery;
     this.sub = this.cartService.onChange.subscribe((newCart: Cart) => {
@@ -94,6 +105,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
+  onDismissed() {
+    this.errorAlert = null;
+  }
+
   onSubmit() {
     if(this.form.valid) {
       this.isLoading = true;
@@ -117,23 +132,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             }).subscribe((res: any) => {
               console.log(res);
               this.cartService.clearCart().subscribe(() => {
-                this.router.navigateByUrl('/success', {replaceUrl: true, state: {eta: res.eta}});
+                this.router.navigateByUrl('/success', {replaceUrl: true, state: {eta: res.eta, pickup: res.pickup}});
               });
             }, (err: any) => {
-              console.log(err);
-              this.router.navigateByUrl('/failed', {replaceUrl: true, state: {error: err}});
+              // Server Handled Errors
+              console.log(err.error.message);
+              this.router.navigateByUrl('/failed', {replaceUrl: true, state: {error: err.error.message}});
             });
           } else {
-            console.log('Token Error');
+            // Card Errors
+            console.log('Stripe Token Error');
             this.isLoading = false;
+            this.errorAlert = 'Your Card information could be wrong or invalid';
           }
         });
       } catch (error) {
+        // Unknown Errors
         console.log(error.message);
         this.isLoading = false;
+        this.errorAlert = error.message;
       }
     } else {
-      this.error = 'Invalid Field';
+      // Form Erros
+      this.formError = true;
     }
   }
 
