@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CartResolverService } from './shared/cart-resolver.service';
 import { DishesResolverService } from './shared/dishes-resolver.service';
 import { SettingsResolverService } from './shared/settings-resolver.service';
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: "success",
     loadChildren: () => import("./success-screen/success-screen.module").then(m => m.SuccessScreenModule)
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent
   }
 ];
 
