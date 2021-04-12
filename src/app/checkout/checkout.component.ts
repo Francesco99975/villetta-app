@@ -40,6 +40,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   cart: Cart;
   sub: Subscription;
   homeDelivery: boolean;
+  homeDeliveryCost: number;
   isLoading: boolean;
 
   form: FormGroup;
@@ -67,6 +68,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.errorAlert = null;
     this.cart = this.cartService.get();
     this.homeDelivery = this.settings.get().homeDelivery;
+    this.homeDeliveryCost = this.settings.get().homeDeliveryCost;
     this.sub = this.cartService.onChange.subscribe((newCart: Cart) => {
       this.cart = newCart;
     });
@@ -87,6 +89,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     document.body.style.backgroundColor = "white"
     this.sub.unsubscribe();
+  }
+
+  get tip(): number {
+    return (this.cart.total * (+this.form.get('tip').value / 100 + 1)) - this.cart.total;
+  }
+
+  get hst(): number {
+    return this.cart.total * 1.13 - this.cart.total;
+  }
+
+  get total(): number {
+    return this.cart.total + this.tip + this.hst + (this.form.get('pickup').value === 'p' ? 0 : +this.homeDeliveryCost);
   }
 
   onBack() {

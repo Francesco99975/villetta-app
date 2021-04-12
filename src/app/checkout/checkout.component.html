@@ -74,7 +74,6 @@
                     </button>
                 </li>       
             </ul>
-            <h2 class="order-tot">Total: {{ cart.total | currency }}</h2>
             
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="details">
                 <div class="omrs-input-group">
@@ -177,6 +176,11 @@
                       </label>
                     </div>
                   </div>
+                  
+                  <h2 class="order-tot" *ngIf="this.form.get('pickup').value !== 'p'">Delivery Fee: {{ homeDeliveryCost | currency }}</h2>
+                  <h2 class="order-tot">Tip: {{ tip | currency}}</h2>
+                  <h2 class="order-tot">HST: {{ hst | currency}}</h2>
+                  <h2 class="order-tot">Total: {{ total | currency }}</h2>
 
                   <h3 class="tip">Payment Info</h3>
 
