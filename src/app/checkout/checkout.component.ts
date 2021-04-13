@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../shared/cart.service';
 import { Cart } from '../shared/models/cart.model';
 import { SettingsService } from '../shared/settings.service';
+import { InfoService } from './info.service';
 import { PaymentService } from './payment.service';
 
 @Component({
@@ -52,10 +53,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private cartService: CartService, 
     private settings: SettingsService, 
     private stripeService: StripeService,
+    private info: InfoService,
     private payment: PaymentService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.info.loadInfo();
     this.isLoading = false;
     this.error = [
       'Firstname must not be empty!',
@@ -74,13 +77,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
     
     this.form = new FormGroup({
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
-      pickup: new FormControl('p', Validators.required),
-      tip: new FormControl('5', Validators.required)
+      firstname: new FormControl(this.info.firstName, Validators.required),
+      lastname: new FormControl(this.info.lastName, Validators.required),
+      address: new FormControl(this.info.address, Validators.required),
+      email: new FormControl(this.info.email, [Validators.required, Validators.email]),
+      phone: new FormControl(this.info.phone, Validators.required),
+      pickup: new FormControl(this.info.pickup, Validators.required),
+      tip: new FormControl(this.info.tip, Validators.required)
     });
 
     document.body.style.backgroundColor = "#083995"
@@ -126,6 +129,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   onSubmit() {
     if(this.form.valid) {
       this.isLoading = true;
+      this.info.setInfo(
+        this.form.get('firstname').value,
+        this.form.get('lastname').value,
+        this.form.get('address').value,
+        this.form.get('email').value,
+        this.form.get('phone').value,
+        this.form.get('pickup').value,
+        this.form.get('tip').value
+      );
       const name = this.form.get('firstname').value + ' ' + this.form.get('lastname').value;
       try {
         this.stripeService.createToken(this.card.element, {name}).subscribe((res) => {
