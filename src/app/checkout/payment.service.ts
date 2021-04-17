@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Item } from '../shared/models/cart.model';
+import { environment } from "../../environments/environment";
 
 interface Order {
   items: Item[];
@@ -27,6 +28,6 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   getStripeSession(payload: Order) {
-    return this.http.post('http://localhost:3000/charge', payload);
+    return this.http.post(`${environment.PAYMENT_API_URL}/charge`, payload);
   }
 }

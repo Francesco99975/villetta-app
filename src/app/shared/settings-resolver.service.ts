@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 import { tap, map } from "rxjs/operators";
 import { SettingsService } from './settings.service';
 import { Settings } from "./models/settings.model"
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class SettingsResolverService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if(this.settings.get() == null) {
-      return this.http.get("http://127.0.0.1:8000/preferences/settings").pipe(
+      return this.http.get(`${environment.DB_API_URL}/preferences/settings`).pipe(
         map((res: any) => JSON.parse(res['settings'])[0]),
         map((item: any) => {
           return new Settings({

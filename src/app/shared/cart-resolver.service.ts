@@ -7,6 +7,7 @@ import { Cart, Item } from "./models/cart.model";
 import { CartService } from "./cart.service";
 import { DishesService } from './dishes.service';
 import { Dish } from './models/dish.model';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CartResolverService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if(this.cartService.get() == null) {
-      return this.http.get("http://127.0.0.1:8000/cart-items", {withCredentials: true}).pipe(
+      return this.http.get(`${environment.DB_API_URL}/cart-items`, {withCredentials: true}).pipe(
         map((res: any) => {
           return {
             'cart': JSON.parse(res['cart']),
@@ -27,7 +28,7 @@ export class CartResolverService {
                 name: itm['fields']['name'],
                 description: itm['fields']['description'],
                 price: itm['fields']['price'],
-                imageUrl: "http://127.0.0.1:8000/media/" + itm['fields']['image'],
+                imageUrl: `${environment.DB_API_URL}/media/` + itm['fields']['image'],
                 courseType: itm['fields']['course_type'],
                 isSpecial: itm['fields']['is_special']
               });

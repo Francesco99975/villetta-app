@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Cart, Item } from './models/cart.model';
-import {CookieService} from 'ngx-cookie-service';
-import { CartResolverService } from './cart-resolver.service';
 import { tap } from 'rxjs/operators';
 import { DishesService } from './dishes.service';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,7 @@ export class CartService {
   }
 
   addToCart(id: number, quantity: number) {
-    return this.http.post(`http://127.0.0.1:8000/add-to-bag/${id}`, {quantity}, {withCredentials: true})
+    return this.http.post(`${environment.DB_API_URL}/add-to-bag/${id}`, {quantity}, {withCredentials: true})
       .pipe(
         tap(() => this.cart.add(
               new Item({
@@ -41,7 +40,7 @@ export class CartService {
   }
 
   removeFromCart(id: number) {
-    return this.http.delete(`http://127.0.0.1:8000/remove-from-bag/${id}`, {withCredentials: true})
+    return this.http.delete(`${environment.DB_API_URL}/remove-from-bag/${id}`, {withCredentials: true})
     .pipe(
       tap(() => this.cart.remove(id)),
       tap(() => this.onChange.next(this.cart))
@@ -49,7 +48,7 @@ export class CartService {
   }
 
   clearCart() {
-    return this.http.get('http://127.0.0.1:8000/clear-bag', {withCredentials: true})
+    return this.http.get(`${environment.DB_API_URL}/clear-bag`, {withCredentials: true})
     .pipe(
       tap(() => this.cart.clear()),
       tap(() => this.onChange.next(this.cart))

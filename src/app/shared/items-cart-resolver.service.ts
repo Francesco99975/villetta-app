@@ -6,7 +6,7 @@ import { tap, map } from "rxjs/operators";
 import { Dish } from "./models/dish.model";
 import { HttpClient } from '@angular/common/http';
 import { Cart, Item } from './models/cart.model';
-import { Observable } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class ItemsCartResolverService {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if(this.dishesService.getDishes().length <= 0) {
-       return this.http.get("http://127.0.0.1:8000/items", {withCredentials: true}).pipe(
+       return this.http.get(`${environment.DB_API_URL}/items`, {withCredentials: true}).pipe(
         map((items: any) => {
           return items['dishes'].map((itm: any) => {
             return new Dish({
@@ -26,7 +26,7 @@ export class ItemsCartResolverService {
               name: itm['fields']['name'],
               description: itm['fields']['description'],
               price: itm['fields']['price'],
-              imageUrl: "http://127.0.0.1:8000/media/" + itm['fields']['image'],
+              imageUrl: `${environment.DB_API_URL}/media/` + itm['fields']['image'],
               courseType: itm['fields']['course_type'],
               isSpecial: itm['fields']['is_special']
             });
@@ -35,7 +35,7 @@ export class ItemsCartResolverService {
         tap((dishes: Dish[]) => this.dishesService.setDishes(dishes)),
         tap(() => {
           if(this.cartService.get() == null) {
-            return this.http.get("http://127.0.0.1:8000/cart-items", {withCredentials: true}).pipe(
+            return this.http.get(`${environment.DB_API_URL}/cart-items`, {withCredentials: true}).pipe(
               map((res: any) => {
                 return {
                   'cart': JSON.parse(res['cart']),
