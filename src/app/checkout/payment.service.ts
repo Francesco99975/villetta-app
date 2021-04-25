@@ -12,6 +12,7 @@ interface Order {
   phone: string;
   pickup: boolean;
   tip: number;
+  method: string;
   homeDeliveryCost: number;
   orderPreparationTime: number;
   quantity: number;
@@ -27,7 +28,7 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  getStripeSession(payload: Order) {
+  pay(payload: Order) {
     return this.http.post(`${environment.PAYMENT_API_URL}/charge`, payload);
   }
 }

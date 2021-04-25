@@ -43,6 +43,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   homeDelivery: boolean;
   homeDeliveryCost: number;
   isLoading: boolean;
+  private ONTAX = 1.13;
 
   form: FormGroup;
   formError: boolean;
@@ -83,7 +84,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       email: new FormControl(this.info.email, [Validators.required, Validators.email]),
       phone: new FormControl(this.info.phone, Validators.required),
       pickup: new FormControl(this.info.pickup, Validators.required),
-      tip: new FormControl(this.info.tip, Validators.required)
+      tip: new FormControl(this.info.tip, Validators.required),
+      method: new FormControl(this.info.method, Validators.required)
     });
 
     document.body.style.backgroundColor = "#083995"
@@ -95,11 +97,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   get tip(): number {
-    return (this.cart.total * (+this.form.get('tip').value / 100 + 1)) - this.cart.total;
+    return this.form.get('pickup').value === 'p' ? 
+            ((this.cart.total * this.ONTAX) * (+this.form.get('tip').value / 100 + 1)) - (this.cart.total * this.ONTAX) :
+            (((this.cart.total + +this.homeDeliveryCost) * this.ONTAX) * (+this.form.get('tip').value / 100 + 1)) - ((this.cart.total + +this.homeDeliveryCost) * this.ONTAX);
   }
 
   get hst(): number {
-    return this.cart.total * 1.13 - this.cart.total;
+    return this.form.get('pickup').value === 'p' ? 
+            (this.cart.total * this.ONTAX) - this.cart.total :
+            ((this.cart.total + +this.homeDeliveryCost) * this.ONTAX) - (this.cart.total + +this.homeDeliveryCost);
   }
 
   get total(): number {
@@ -127,22 +133,34 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if(this.form.get('pickup').value === 'p') {
+      this.form.get('address').setValue('UND');
+    }
     if(this.form.valid) {
       this.isLoading = true;
       this.info.setInfo(
         this.form.get('firstname').value,
         this.form.get('lastname').value,
-        this.form.get('address').value,
+        this.form.get('address').value === 'UND' ? '' : this.form.get('address').value,
         this.form.get('email').value,
         this.form.get('phone').value,
         this.form.get('pickup').value,
-        this.form.get('tip').value
+        this.form.get('tip').value,
+        this.form.get('method').value
       );
       const name = this.form.get('firstname').value + ' ' + this.form.get('lastname').value;
       try {
-        this.stripeService.createToken(this.card.element, {name}).subscribe((res) => {
-          if(res.token) {
-            this.payment.getStripeSession({
+        if(this.form.get('method').value === 's') {
+          this.stripeService.createToken(this.card.element, {name}).subscribe((res) => {
+            if(!res.token) {
+              // Card Errors
+              // console.log('Stripe Token Error');
+              // this.isLoading = false;
+              this.isLoading = false;
+              throw 'Your Card information could be wrong or invalid';
+            } 
+
+            this.payment.pay({
               items: this.cart.items, 
               firstname: this.form.get('firstname').value,
               lastname: this.form.get('lastname').value,
@@ -151,6 +169,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               phone: this.form.get('phone').value,
               pickup: this.form.get('pickup').value == 'p' ? true: false,
               tip: this.form.get('tip').value, 
+              method: this.form.get('method').value,
               homeDeliveryCost: this.settings.get().homeDeliveryCost,
               orderPreparationTime: this.settings.get().orderPreparationTime,
               quantity: this.cart.quantity, 
@@ -167,13 +186,36 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               console.log(err.error.message);
               this.router.navigateByUrl('/failed', {replaceUrl: true, state: {error: err.error.message}});
             });
-          } else {
-            // Card Errors
-            console.log('Stripe Token Error');
-            this.isLoading = false;
-            this.errorAlert = 'Your Card information could be wrong or invalid';
-          }
-        });
+          });
+        } else {
+          this.payment.pay({
+            items: this.cart.items, 
+            firstname: this.form.get('firstname').value,
+            lastname: this.form.get('lastname').value,
+            email: this.form.get('email').value,
+            address: this.form.get('address').value,
+            phone: this.form.get('phone').value,
+            pickup: this.form.get('pickup').value == 'p' ? true: false,
+            tip: this.form.get('tip').value, 
+            method: this.form.get('method').value,
+            homeDeliveryCost: this.settings.get().homeDeliveryCost,
+            orderPreparationTime: this.settings.get().orderPreparationTime,
+            quantity: this.cart.quantity, 
+            uniqueQuantity: this.cart.uniqueQuantity,
+            total: this.cart.total,
+            tokenId: ''
+          }).subscribe((res: any) => {
+            console.log(res);
+            this.cartService.clearCart().subscribe(() => {
+              this.router.navigateByUrl('/success', {replaceUrl: true, state: {eta: res.eta, pickup: res.pickup}});
+            });
+          }, (err: any) => {
+            // Server Handled Errors
+            console.log(err.error.message);
+            this.router.navigateByUrl('/failed', {replaceUrl: true, state: {error: err.error.message}});
+          });
+        }
+
       } catch (error) {
         // Unknown Errors
         console.log(error.message);
@@ -182,6 +224,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     } else {
       // Form Erros
+      this.isLoading = false;
       this.formError = true;
     }
   }

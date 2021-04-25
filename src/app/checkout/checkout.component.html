@@ -76,45 +76,6 @@
             </ul>
             
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="details">
-                <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('firstname').errors && formError}">
-                        <input type="text" name="fn" id="fn" formControlName="firstname" required>
-                        <span class="omrs-input-label">Firstname</span>
-                        <span *ngIf="form.get('firstname').errors && formError" class="omrs-input-helper">{{ error[0] }}</span>
-                    </label>
-                </div>
-
-                <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('lastname').errors && formError}">
-                        <input type="text" name="ln" id="ln" formControlName="lastname" required>
-                        <span class="omrs-input-label">Lastname</span>
-                        <span *ngIf="form.get('lastname').errors && formError" class="omrs-input-helper">{{ error[1] }}</span>
-                    </label>
-                </div>
-
-                <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('address').errors && formError}">
-                        <input type="text" name="address" id="address" formControlName="address" required>
-                        <span class="omrs-input-label">Address</span>
-                        <span *ngIf="form.get('address').errors && formError" class="omrs-input-helper">{{ error[2] }}</span>
-                    </label>
-                </div>
-
-                <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('email').errors && formError}">
-                        <input type="email" name="email" id="email" formControlName="email" required>
-                        <span class="omrs-input-label">Email</span>
-                        <span *ngIf="form.get('email').errors && formError" class="omrs-input-helper">{{ error[3] }}</span>
-                    </label>
-                </div>
-
-                <div class="omrs-input-group">
-                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('phone').errors && formError}">
-                        <input type="text" name="phone" id="phone" formControlName="phone" required>
-                        <span class="omrs-input-label">Phone</span>
-                        <span *ngIf="form.get('phone').errors && formError" class="omrs-input-helper">{{ error[4] }}</span>
-                    </label>
-                </div>
 
                 <h3 class="tip" *ngIf="!homeDelivery">Only pickup orders available at this time</h3>
 
@@ -144,6 +105,46 @@
                           <label for="drive" class="radio-tile-label">Delivery</label>
                         </div>
                       </div>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('firstname').errors && formError}">
+                        <input type="text" name="fn" id="fn" formControlName="firstname" required>
+                        <span class="omrs-input-label">Firstname</span>
+                        <span *ngIf="form.get('firstname').errors && formError" class="omrs-input-helper">{{ error[0] }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('lastname').errors && formError}">
+                        <input type="text" name="ln" id="ln" formControlName="lastname" required>
+                        <span class="omrs-input-label">Lastname</span>
+                        <span *ngIf="form.get('lastname').errors && formError" class="omrs-input-helper">{{ error[1] }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group" *ngIf="form.get('pickup').value !== 'p'">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('address').errors && formError}">
+                        <input type="text" name="address" id="address" formControlName="address" required>
+                        <span class="omrs-input-label">Address</span>
+                        <span *ngIf="form.get('address').errors && formError" class="omrs-input-helper">{{ error[2] }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('email').errors && formError}">
+                        <input type="email" name="email" id="email" formControlName="email" required>
+                        <span class="omrs-input-label">Email</span>
+                        <span *ngIf="form.get('email').errors && formError" class="omrs-input-helper">{{ error[3] }}</span>
+                    </label>
+                </div>
+
+                <div class="omrs-input-group">
+                    <label class="omrs-input-underlined" [ngClass]="{'omrs-input-danger': form.get('phone').errors && formError}">
+                        <input type="text" name="phone" id="phone" formControlName="phone" required>
+                        <span class="omrs-input-label">Phone</span>
+                        <span *ngIf="form.get('phone').errors && formError" class="omrs-input-helper">{{ error[4] }}</span>
+                    </label>
                 </div>
 
                 <h3 class="tip">TIP</h3>
@@ -184,7 +185,39 @@
 
                   <h3 class="tip">Payment Info</h3>
 
-                  <ngx-stripe-card
+                  <div class="radio-tile-group">
+                    <div class="input-container">
+                        <input id="cash" checked class="radio-button" type="radio" name="method" value="c" formControlName="method"/>
+                        <div class="radio-tile">
+                          <div class="icon bike-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                          </div>
+                          <label for="cash" class="radio-tile-label">Cash</label>
+                        </div>
+                      </div>
+                
+                      <div class="input-container">
+                        <input id="card" checked class="radio-button" type="radio" name="method" value="s" formControlName="method"/>
+                        <div class="radio-tile">
+                          <div class="icon bike-icon">
+                            <i class="far fa-credit-card"></i>
+                          </div>
+                          <label for="card" class="radio-tile-label">Credit/Debit Card</label>
+                        </div>
+                      </div>
+
+                      <!-- <div class="input-container">
+                        <input id="paypal" checked class="radio-button" type="radio" name="method" value="p" formControlName="method"/>
+                        <div class="radio-tile">
+                          <div class="icon bike-icon">
+                            <i class="fab fa-cc-paypal"></i>
+                          </div>
+                          <label for="paypal" class="radio-tile-label">Paypal</label>
+                        </div>
+                      </div> -->
+                </div>
+
+                  <ngx-stripe-card *ngIf="form.get('method').value === 's'"
                     class="card-details"
                     [options]="cardOptions"
                     [elementsOptions]="elementsOptions"

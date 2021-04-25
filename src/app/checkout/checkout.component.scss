@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .wrapper {
   width: 100%;
   position: relative;
@@ -21,7 +23,7 @@ body {
   justify-content: center;
 
   h2 {
-    color: #083995;
+    color: $secondary-color;
     text-align: center;
   }
 }
@@ -70,19 +72,19 @@ main {
   justify-content: center;
   outline: none;
   i {
-    color: #d0e025;
+    color: $highlight;
     font-size: 1.5rem;
   }
 }
 .empty-msg {
-  color: #083995;
+  color: $secondary-color;
   font-size: 1.7rem;
 }
 .bag-container {
   width: 100%;
   margin: auto;
   margin-top: 3rem;
-  background-color: #fffdd0;
+  background-color: $primary-color;
   border-radius: 25px 25px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -106,7 +108,7 @@ main {
 }
 .order-list {
   width: 80%;
-  border: 3px dashed #083995;
+  border: 3px dashed $secondary-color;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +127,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #083995;
+  color: $secondary-color;
 }
 .remove-btn {
   font: inherit;
@@ -143,14 +145,14 @@ main {
   }
 }
 .order-tot {
-  color: #083995;
+  color: $secondary-color;
 }
 .continue-btn {
   font: inherit;
   font-weight: bold;
   border-radius: 25px;
-  background: #083995;
-  color: #d0e025;
+  background: $secondary-color;
+  color: $highlight;
   width: 80%;
   cursor: pointer;
   margin: 1.5rem;
@@ -182,7 +184,7 @@ div.omrs-input-group {
 .omrs-input-underlined > input,
 .omrs-input-filled > input {
   border: none;
-  border-bottom: 0.125rem solid #083995;
+  border-bottom: 0.125rem solid $secondary-color;
   width: 100%;
   height: 2.9rem;
   font-size: 1.0625rem;
@@ -203,7 +205,7 @@ div.omrs-input-group {
   top: 0.9375rem;
   left: 0.875rem;
   line-height: 147.6%;
-  color: #083995;
+  color: $secondary-color;
   transition: top 0.2s;
 }
 
@@ -218,14 +220,14 @@ div.omrs-input-group {
 .omrs-input-underlined > .omrs-input-helper,
 .omrs-input-filled > .omrs-input-helper {
   font-size: 0.9375rem;
-  color: #083995;
+  color: $secondary-color;
   letter-spacing: 0.0275rem;
   margin: 0.125rem 0.875rem;
 }
 
 .omrs-input-underlined > input:hover,
 .omrs-input-filled > input:hover {
-  border-color: #d0e025;
+  border-color: $highlight;
 }
 
 .omrs-input-underlined > input:focus + .omrs-input-label,
@@ -241,12 +243,12 @@ div.omrs-input-group {
   > input:focus
   + .omrs-input-label,
 .omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
-  color: #083995;
+  color: $secondary-color;
 }
 
 .omrs-input-underlined:not(.omrs-input-danger) > input:focus,
 .omrs-input-filled:not(.omrs-input-danger) > input:focus {
-  border-color: #083995;
+  border-color: $secondary-color;
 }
 
 // .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
@@ -297,7 +299,7 @@ div.omrs-input-group {
 
 .tip {
   font-size: 1.2rem;
-  color: #083995;
+  color: $secondary-color;
   text-align: center;
 }
 
@@ -405,7 +407,11 @@ div.omrs-input-group {
 
 // Delivery Radio
 
-$primary-color: #079ad9;
+$radio-color: #079ad9;
+
+.input-container i {
+  font-size: 2rem;
+}
 
 .radio-tile-group {
   display: flex;
@@ -440,13 +446,13 @@ $primary-color: #079ad9;
       justify-content: center;
       width: 100%;
       height: 100%;
-      border: 2px solid $primary-color;
+      border: 2px solid $radio-color;
       border-radius: 5px;
       padding: 1rem;
       transition: transform 300ms ease;
     }
     .icon svg {
-      fill: $primary-color;
+      fill: $radio-color;
       width: 3rem;
       height: 3rem;
     }
@@ -456,23 +462,23 @@ $primary-color: #079ad9;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: $primary-color;
+      color: $radio-color;
     }
 
     //active tile styles
     .radio-button:checked + .radio-tile {
-      background-color: $primary-color;
-      border: 2px solid $primary-color;
+      background-color: $radio-color;
+      border: 2px solid $radio-color;
       color: white;
       transform: scale(1.1, 1.1);
 
       .icon svg {
         fill: white;
-        background-color: $primary-color;
+        background-color: $radio-color;
       }
       .radio-tile-label {
         color: white;
-        background-color: $primary-color;
+        background-color: $radio-color;
       }
     }
   }
@@ -482,7 +488,7 @@ $primary-color: #079ad9;
   margin: 0.5rem;
   width: 90%;
   padding: 1rem;
-  border: 1px solid #083995;
+  border: 1px solid $secondary-color;
 }
 
 @media (min-width: 55rem) {

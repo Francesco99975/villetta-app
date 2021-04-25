@@ -12,6 +12,7 @@ export class InfoService {
   phone: string;
   pickup: string;
   tip: string;
+  method: string;
 
   constructor() { }
 
@@ -23,9 +24,10 @@ export class InfoService {
     this.phone = localStorage.getItem('phone') || "";
     this.pickup = localStorage.getItem('pickup') || "p";
     this.tip = localStorage.getItem('tip') || "5";
+    this.method = localStorage.getItem('method') || "s";
   }
 
-  setInfo(fn: string, ln: string, adr: string, email: string, phone: string, pickup: string, tip: string) {
+  setInfo(fn: string, ln: string, adr: string, email: string, phone: string, pickup: string, tip: string, method: string) {
     this.firstName = fn;
     this.lastName = ln;
     this.address = adr;
@@ -33,6 +35,7 @@ export class InfoService {
     this.phone = phone;
     this.pickup = pickup;
     this.tip = tip;
+    this.method = method;
     localStorage.setItem('first-name', fn);
     localStorage.setItem('last-name', ln);
     localStorage.setItem('address', adr);
@@ -40,5 +43,6 @@ export class InfoService {
     localStorage.setItem('phone', phone);
     localStorage.setItem('pickup', pickup);
     localStorage.setItem('tip', tip);
+    localStorage.setItem('method', method);
   }
 }
