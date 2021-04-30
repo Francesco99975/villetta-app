@@ -132,7 +132,7 @@
         <h3><a [href]="'tel:'+settings.phone">{{ settings.phone }}</a></h3>
         <h3><a [href]="'mailto:'+settings.email">{{ settings.email }}</a></h3>
         <!-- Address -->
-        <h3><a href="http://" target="_blank" rel="noopener noreferrer">{{ settings.address }}</a></h3>
+        <h3><a [href]="addressLink" target="_blank" rel="noopener noreferrer">{{ settings.address }}</a></h3>
         <div class="social">
             <a [href]="settings.facebookLink" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
             <a [href]="settings.instagramLink" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>

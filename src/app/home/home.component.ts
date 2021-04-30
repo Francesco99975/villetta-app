@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   dishes: Dish[] = [];
   settings: Settings;
+  addressLink: string;
 
   constructor(private dishesService: DishesService, private settingsService: SettingsService) { }
 
@@ -23,6 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dishes = this.dishesService.getDishes();
     this.settings = this.settingsService.get();
     this.sub = this.dishesService.onChange.subscribe(dhs => this.dishes = dhs);
+    const formattedAddress = this.settings.address.split(' ').join('+');
+    this.addressLink = `https://maps.google.com/?q=${formattedAddress}+ON+Canada`;
   }
 
   ngOnDestroy(): void {
