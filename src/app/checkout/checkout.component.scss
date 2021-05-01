@@ -62,7 +62,7 @@ main {
   height: 3.3rem;
   justify-self: flex-start;
   border-radius: 10px;
-  background-color: #191b1b;
+  background-color: $alter;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   border: none;
@@ -185,6 +185,7 @@ div.omrs-input-group {
 .omrs-input-filled > input {
   border: none;
   border-bottom: 0.125rem solid $secondary-color;
+  color: $secondary-color;
   width: 100%;
   height: 2.9rem;
   font-size: 1.0625rem;
