@@ -8,7 +8,11 @@
     "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev:ssr": "ng run villetta-client:serve-ssr",
+    "serve:ssr": "node dist/villetta-client/server/main.js",
+    "build:ssr": "ng build --prod && ng run villetta-client:server:production",
+    "prerender": "ng run villetta-client:prerender"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +23,11 @@
     "@angular/forms": "~11.2.7",
     "@angular/platform-browser": "~11.2.7",
     "@angular/platform-browser-dynamic": "~11.2.7",
+    "@angular/platform-server": "~11.2.7",
     "@angular/router": "~11.2.7",
+    "@nguniversal/express-engine": "^11.2.1",
     "@stripe/stripe-js": "^1.13.2",
+    "express": "^4.15.2",
     "ngx-cookie-service": "^11.0.2",
     "ngx-stripe": "^11.0.0",
     "rxjs": "~6.6.0",
@@ -31,6 +38,8 @@
     "@angular-devkit/build-angular": "^0.1102.6",
     "@angular/cli": "~11.2.6",
     "@angular/compiler-cli": "~11.2.7",
+    "@nguniversal/builders": "^11.2.1",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.20.7",

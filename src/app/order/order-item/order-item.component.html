@@ -5,13 +5,13 @@
             <h3>{{ description }}</h3>
             <h2>${{ price }}</h2>
         </div>
-        <div class="order-item__image">
+        <button class="btn btn-add" (click)="addToBag()">Add to Order</button>
+        <!-- <div class="order-item__image">
             <img [src]="imageUrl" alt="SpecialImg" class="order-item__img" height="100" width="100">
-        </div>
+        </div> -->
     </div>
 
     <div class="order-item__actions">
-        <button class="btn btn-add" (click)="addToBag()">Add to Order</button>
         <div class="order-item__qty">
             <button class="btn btn-dec" (click)="decrement()">
                 <i class="fas fa-minus"></i>

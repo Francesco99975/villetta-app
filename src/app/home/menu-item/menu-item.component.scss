@@ -1,0 +1,28 @@
+@import "../../../variables.scss";
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: $primary-color;
+  width: 100%;
+  flex-direction: column;
+}
+
+.menu-item__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (min-width: 55rem) {
+  .menu-item {
+    flex-direction: row;
+  }
+  .menu-item__info {
+    align-items: flex-start;
+  }
+}

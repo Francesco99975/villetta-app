@@ -18,7 +18,7 @@ import { UnavailableComponent } from './unavailable/unavailable.component';
   imports: [
     SharedModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
   providers: [CookieService],

@@ -150,6 +150,20 @@ body {
 main {
   grid-area: main;
 }
+.btn {
+  font: inherit;
+  font-weight: bold;
+  border-radius: 25px;
+  background: transparent;
+  width: 50%;
+  cursor: pointer;
+  margin: 2rem;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
 .brand__presentation {
   background-color: $secondary-color;
   color: $primary-color;
@@ -162,11 +176,15 @@ main {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  background-image: url("./assets/images/hook.jpg");
+  background-image: url("./assets/images/hook-small.webp");
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  h1 {
+    max-width: fit-content;
+  }
 }
 .specials {
   h2 {
@@ -195,7 +213,7 @@ main {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-image: url("./assets/images/special1.jpg");
+    background-image: url("./assets/images/special1.webp");
   }
 }
 .regulars {
@@ -225,7 +243,7 @@ main {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-image: url("./assets/images/menu2.jpg");
+    background-image: url("./assets/images/menu2-small.webp");
   }
 }
 .bio__desc {
@@ -249,16 +267,7 @@ main {
   width: 100%;
   flex-direction: column;
 }
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  padding: 1.5rem;
-  background-color: $primary-color;
-  width: 100%;
-  flex-direction: column;
-}
+
 .bio__text {
   font-size: 1.5rem;
 }
@@ -279,14 +288,9 @@ main {
   background-position: center;
   background-attachment: fixed;
   height: 20rem;
-  background-image: url("./assets/images/extra.jpg");
+  background-image: url("./assets/images/extra-small.webp");
 }
-.menu-item__info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+
 .item-divider {
   width: 100%;
   height: 20px;
@@ -311,19 +315,6 @@ main {
     background-color: transparent;
     border: 3px solid $secondary-color;
   }
-}
-.btn {
-  font: inherit;
-  font-weight: bold;
-  border-radius: 25px;
-  background: transparent;
-  width: 50%;
-  cursor: pointer;
-  margin: 2rem;
-  padding: 1rem;
-  border: none;
-  outline: none;
-  text-align: center;
 }
 .contact {
   width: 100%;
@@ -364,12 +355,6 @@ main {
 @media (min-width: 55rem) {
   .bio {
     flex-direction: row;
-  }
-  .menu-item {
-    flex-direction: row;
-  }
-  .menu-item__info {
-    align-items: flex-start;
   }
   .brand__presentation {
     font-size: 5rem;

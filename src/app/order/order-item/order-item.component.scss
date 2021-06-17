@@ -31,8 +31,8 @@
 .order-item__actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 90%;
+  justify-content: center;
+  // width: 90%;
 }
 .btn-add {
   border-radius: 10px;
@@ -50,7 +50,7 @@
 .order-item__qty {
   display: flex;
   align-items: center;
-  width: 45%;
+  // width: 45%;
   .qty {
     color: $secondary-color;
     font-size: 1.1rem;

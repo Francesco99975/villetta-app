@@ -3,7 +3,7 @@
     <div class="message"></div>
 </div>
 <main>    
-    <section *ngIf="specials.length > 0" class="specials ord-section">
+    <!-- <section *ngIf="specials.length > 0" class="specials ord-section">
         <h1>Specials Menu</h1>
     
         <app-order-item class="wrap" 
@@ -15,7 +15,7 @@
             [price]="special.price"
             [divider]="i + 1 < specials.length">
         </app-order-item>
-    </section>
+    </section> -->
 
     <section *ngIf="regQty > 0" class="regulars ord-section">
         <h1>Menu</h1>
