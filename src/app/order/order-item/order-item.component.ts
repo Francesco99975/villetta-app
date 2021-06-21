@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/cart.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class OrderItemComponent implements OnInit {
 
   itemQuantity: number;
 
-  constructor(private cart: CartService) { }
+  constructor(private cart: CartService, private toaster: ToastrService) { }
 
   ngOnInit(): void {
     this.itemQuantity = 1;
@@ -37,9 +38,10 @@ export class OrderItemComponent implements OnInit {
   addToBag() {
     this.cart.addToCart(this.id, this.itemQuantity).subscribe((res: any) => {
       console.log("Item added");
-      document.querySelector('.message').innerHTML = res.message;
-      document.querySelector('.messages').classList.add('msg-open');
-      setTimeout(() => document.querySelector('.messages').classList.remove('msg-open'), 3000);
+      this.toaster.info(res.message, "Item Added to Cart");
+      // document.querySelector('.message').innerHTML = res.message;
+      // document.querySelector('.messages').classList.add('msg-open');
+      // setTimeout(() => document.querySelector('.messages').classList.remove('msg-open'), 3000);
     });
   }
 

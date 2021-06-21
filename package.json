@@ -16,7 +16,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.2.7",
+    "@angular/animations": "^11.2.14",
     "@angular/common": "~11.2.7",
     "@angular/compiler": "~11.2.7",
     "@angular/core": "~11.2.7",
@@ -25,11 +25,13 @@
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/platform-server": "~11.2.7",
     "@angular/router": "~11.2.7",
+    "@angular/service-worker": "~11.2.7",
     "@nguniversal/express-engine": "^11.2.1",
     "@stripe/stripe-js": "^1.13.2",
     "express": "^4.15.2",
     "ngx-cookie-service": "^11.0.2",
     "ngx-stripe": "^11.0.0",
+    "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
