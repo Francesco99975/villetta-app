@@ -24,35 +24,35 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  get specials(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.isSpecial);
-  }
+  // get specials(): Dish[] {
+  //   return this.dishes.filter((dhs: Dish) => dhs.isSpecial);
+  // }
 
   get antipasti(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'A' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'A');
   }
 
   get primi(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'P' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'P');
   }
 
   get secondi(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'S' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'S');
   }
 
   get pizze(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'Z' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'Z');
   }
 
   get desserts(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'D' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'D');
   }
 
   get beverages(): Dish[] {
-    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'B' && !dhs.isSpecial);
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'B');
   }
 
   get regQty(): number {
-    return this.dishes.filter((dhs: Dish) => !dhs.isSpecial).length
+    return this.dishes.length
   };
 }

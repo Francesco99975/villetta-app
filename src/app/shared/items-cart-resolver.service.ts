@@ -26,9 +26,7 @@ export class ItemsCartResolverService {
               name: itm['fields']['name'],
               description: itm['fields']['description'],
               price: itm['fields']['price'],
-              imageUrl: `${environment.DB_API_URL}/media/` + itm['fields']['image'],
-              courseType: itm['fields']['course_type'],
-              isSpecial: itm['fields']['is_special']
+              courseType: itm['fields']['course_type']
             });
           });
         }),
