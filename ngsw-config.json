@@ -30,7 +30,7 @@
   "dataGroups": [
     {
       "name": "items-api",
-      "urls": ["http://192.168.0.38:8080/items"],
+      "urls": ["https://viladmin.francescobarranca.dev/items"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 20,
@@ -40,7 +40,7 @@
     },
     {
       "name": "cart-api",
-      "urls": ["http://192.168.0.38:8080/cart-items"],
+      "urls": ["https://viladmin.francescobarranca.dev/cart-items"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 20,
@@ -50,7 +50,7 @@
     },
     {
       "name": "settings-api",
-      "urls": ["http://192.168.0.38:8080/preferences/settings"],
+      "urls": ["https://viladmin.francescobarranca.dev/preferences/settings"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 20,
