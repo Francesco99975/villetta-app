@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot({positionClass: "toast-top-center"}),
+    ToastrModule.forRoot({positionClass: "toast-bottom-center"}),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

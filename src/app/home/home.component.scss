@@ -2,3 +2,17 @@
 .course {
   width: 100%;
 }
+
+#big-logo {
+  display: none;
+}
+
+@media (min-width: 55rem) {
+  #small-logo {
+    display: none;
+  }
+
+  #big-logo {
+    display: block;
+  }
+}

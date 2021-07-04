@@ -92,6 +92,11 @@
   width: 30%;
 }
 
+.info-toast {
+  background-color: $secondary-color;
+  color: $highlight;
+}
+
 @media (min-width: 55rem) {
   .order-item__image img {
     height: 250px;

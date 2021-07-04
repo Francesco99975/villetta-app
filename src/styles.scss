@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html {
@@ -166,7 +167,7 @@ main {
 
 .brand__presentation {
   background-color: $secondary-color;
-  color: $primary-color;
+  color: $highlight;
   font-size: 2.7rem;
   text-align: center;
   height: 100vh;
@@ -176,46 +177,47 @@ main {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  background-image: url("./assets/images/hook-small.webp");
+  background-image: url("./assets/images/hook1.webp");
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-  h1 {
+  h1,
+  img {
     max-width: fit-content;
   }
 }
-.specials {
-  h2 {
-    color: $secondary-color;
-  }
-  h3 {
-    color: $secondary-color;
-  }
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  h1 {
-    font-family: "Tangerine";
-    font-size: 5rem;
-    color: $primary-color;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 20rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-image: url("./assets/images/special1.webp");
-  }
-}
+// .specials {
+//   h2 {
+//     color: $secondary-color;
+//   }
+//   h3 {
+//     color: $secondary-color;
+//   }
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   h1 {
+//     font-family: "Tangerine";
+//     font-size: 5rem;
+//     color: $primary-color;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center;
+//     background-attachment: fixed;
+//     height: 20rem;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     text-align: center;
+//     width: 100%;
+//     margin: 0;
+//     padding: 0;
+//     background-image: url("./assets/images/special1.webp");
+//   }
+// }
 .regulars {
   h2 {
     color: $secondary-color;
@@ -229,8 +231,8 @@ main {
   flex-direction: column;
   h1 {
     font-family: "Tangerine";
-    font-size: 5rem;
-    color: $primary-color;
+    font-size: 3.5rem;
+    color: $highlight;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -243,7 +245,21 @@ main {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-image: url("./assets/images/menu2-small.webp");
+    background-image: url("./assets/images/menu.webp");
+  }
+
+  #order {
+    height: 25rem;
+    font-size: 5rem;
+    font-weight: bold;
+    background-image: url("./assets/images/menu.webp");
+    // background-position: 50%;
+
+    span {
+      background-color: #3f3f3f3f;
+      padding: 1rem;
+      border-radius: 15px;
+    }
   }
 }
 .bio__desc {
@@ -288,7 +304,7 @@ main {
   background-position: center;
   background-attachment: fixed;
   height: 20rem;
-  background-image: url("./assets/images/extra-small.webp");
+  background-image: url("./assets/images/end.webp");
 }
 
 .item-divider {
@@ -358,5 +374,6 @@ main {
   }
   .brand__presentation {
     font-size: 5rem;
+    background-image: url("./assets/images/hook.webp");
   }
 }

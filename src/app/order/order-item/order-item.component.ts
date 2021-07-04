@@ -38,7 +38,9 @@ export class OrderItemComponent implements OnInit {
   addToBag() {
     this.cart.addToCart(this.id, this.itemQuantity).subscribe((res: any) => {
       console.log("Item added");
-      this.toaster.info(res.message, "Item Added to Cart");
+      this.toaster.info(res.message, "Item Added to Cart", {
+        timeOut: 2000
+      });
       // document.querySelector('.message').innerHTML = res.message;
       // document.querySelector('.messages').classList.add('msg-open');
       // setTimeout(() => document.querySelector('.messages').classList.remove('msg-open'), 3000);
