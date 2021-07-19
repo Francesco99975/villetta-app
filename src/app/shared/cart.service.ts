@@ -47,6 +47,14 @@ export class CartService {
     );
   }
 
+  removeOneFromCart(id: number) {
+    return this.http.delete(`${environment.DB_API_URL}/remove-one-from-bag/${id}`, {withCredentials: true})
+    .pipe(
+      tap(() => this.cart.removeOne(id)),
+      tap(() => this.onChange.next(this.cart))
+    );
+  }
+
   clearCart() {
     return this.http.get(`${environment.DB_API_URL}/clear-bag`, {withCredentials: true})
     .pipe(

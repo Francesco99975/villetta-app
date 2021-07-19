@@ -47,6 +47,15 @@ export class Cart {
         this.items.splice(index, 1);
     }
 
+    removeOne(id: number) {
+        const index = this.items.findIndex((itm) => itm.product.id == id);
+        if(this.items[index].quantity <= 1) {
+            this.remove(id);
+        } else {
+        this.items[index].quantity = this.items[index].quantity - 1;
+        }
+    }
+
     clear() {
         this.items = [];
     }

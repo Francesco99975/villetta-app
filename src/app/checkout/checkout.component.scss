@@ -115,6 +115,7 @@ main {
   justify-content: center;
   background-color: transparent;
   border-radius: 25px;
+  padding: 0;
 }
 .order-item {
   width: 80%;
@@ -128,6 +129,10 @@ main {
   flex-direction: column;
   justify-content: center;
   color: $secondary-color;
+}
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
 }
 .remove-btn {
   font: inherit;

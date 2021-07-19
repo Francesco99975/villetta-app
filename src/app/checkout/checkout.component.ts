@@ -66,7 +66,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       'Lastname must not be empty!',
       'Address must not be empty!',
       'Email must not be empty and formatted correctly',
-      'Phone number must not be empty!'
+      'Phone number must not be empty or invalid!'
     ];
     this.formError = false;
     this.errorAlert = null;
@@ -82,7 +82,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       lastname: new FormControl(this.info.lastName, Validators.required),
       address: new FormControl(this.info.address, Validators.required),
       email: new FormControl(this.info.email, [Validators.required, Validators.email]),
-      phone: new FormControl(this.info.phone, Validators.required),
+      phone: new FormControl(this.info.phone, [Validators.required, Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]),
       pickup: new FormControl(this.info.pickup, Validators.required),
       tip: new FormControl(this.info.tip, Validators.required),
       method: new FormControl(this.info.method, Validators.required)
@@ -116,9 +116,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/order');
   }
 
+  onAddOne(index: number) {
+    this.cartService.addToCart(this.cart.items[index].product.id, 1).subscribe(() => {
+      console.log("Item added");
+    });
+  }
+
   onRemove(index: number) {
     this.cartService.removeFromCart(this.cart.items[index].product.id).subscribe(() => {
       console.log("Item removed");
+    });
+  }
+
+  onRemoveOne(index: number) {
+    this.cartService.removeOneFromCart(this.cart.items[index].product.id).subscribe(() => {
+      console.log("1 Item removed");
     });
   }
 

@@ -69,9 +69,17 @@
                         <span>{{ item.quantity }}x. {{ item.product.name }}</span>
                         <span>{{ item.subtotal | currency }}</span>
                     </div>
-                    <button class="remove-btn" (click)="onRemove(i)">
+                    <div class="cart-actions">
+                      <button class="remove-btn" (click)="onRemoveOne(i)" style="margin-right: 5px; background-color: #fdca40">
                         <i class="fas fa-minus-circle"></i>
-                    </button>
+                      </button>
+                      <button class="remove-btn" (click)="onAddOne(i)" style="margin-right: 5px; background-color: green">
+                        <i class="fas fa-plus-circle"></i>
+                      </button>
+                      <button class="remove-btn" (click)="onRemove(i)">
+                        <i class="far fa-times-circle"></i>
+                      </button>
+                    </div>
                 </li>       
             </ul>
             
@@ -183,14 +191,14 @@
                   <h2 class="order-tot">HST: {{ hst | currency}}</h2>
                   <h2 class="order-tot">Total: {{ total | currency }}</h2>
 
-                  <h3 class="tip">Payment Info</h3>
+                  <h3 class="tip">Payment Method</h3>
 
                   <div class="radio-tile-group">
                     <div class="input-container">
                         <input id="cash" checked class="radio-button" type="radio" name="method" value="c" formControlName="method"/>
                         <div class="radio-tile">
                           <div class="icon bike-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                            <i class="fas fa-dollar-sign" style="color: #fdca40;"></i>
                           </div>
                           <label for="cash" class="radio-tile-label">Cash</label>
                         </div>
@@ -200,7 +208,7 @@
                         <input id="card" checked class="radio-button" type="radio" name="method" value="s" formControlName="method"/>
                         <div class="radio-tile">
                           <div class="icon bike-icon">
-                            <i class="far fa-credit-card"></i>
+                            <i class="far fa-credit-card" style="color: #fdca40;"></i>
                           </div>
                           <label for="card" class="radio-tile-label">Credit/Debit Card</label>
                         </div>
