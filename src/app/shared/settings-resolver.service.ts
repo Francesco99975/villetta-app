@@ -20,6 +20,7 @@ export class SettingsResolverService {
         map((item: any) => {
           return new Settings({
             websiteAvailable: item['fields']['website_available'],
+            ordersAvailable: item['fields']['orders_available'],
             phone: item['fields']['telephone_number'],
             email: item['fields']['email'],
             address: item['fields']['address'],
@@ -47,6 +48,10 @@ export class SettingsResolverService {
         tap((settings: Settings) => {
           if(!settings.websiteAvailable) {
             this.router.navigateByUrl('/unavailable', {replaceUrl: true});
+          }
+
+          if(!settings.ordersAvailable && (route.routeConfig.path.includes('order') || route.routeConfig.path.includes('checkout'))) {
+            this.router.navigateByUrl('/', {replaceUrl: true});
           }
         }),
         tap((settings: Settings) => this.settings.set(settings))

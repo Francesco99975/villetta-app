@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
 import { Cart } from '../models/cart.model';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +16,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input() checkout: boolean;
   cartQuantity: number;
+  ordersOn: boolean;
 
-  constructor(private router: Router, private cart: CartService) { }
+  constructor(private router: Router, private cart: CartService, private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     if(this.cart.get() != null) {
@@ -25,6 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sub = this.cart.onChange.subscribe((newCart: Cart) => {
       this.cartQuantity = newCart.quantity;
     });
+    this.ordersOn = this.settingsService.get().ordersAvailable;
   }
 
   ngOnDestroy(): void {

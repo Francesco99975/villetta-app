@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { OrderGuard } from './order/order.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CartResolverService } from './shared/cart-resolver.service';
 import { DishesResolverService } from './shared/dishes-resolver.service';

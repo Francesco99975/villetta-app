@@ -1,5 +1,6 @@
 export class Settings {
     websiteAvailable: boolean;
+    ordersAvailable: boolean;
     phone: string;
     email: string;
     address: string;
@@ -26,6 +27,7 @@ export class Settings {
 
     constructor({
         websiteAvailable,
+        ordersAvailable,
         phone,
         email,
         address,
@@ -51,6 +53,7 @@ export class Settings {
     }) {
         let now: Date = new Date();
         this.websiteAvailable = websiteAvailable;
+        this.ordersAvailable = ordersAvailable;
         this.phone = phone;
         this.email = email;
         this.address = address;
