@@ -15,3 +15,20 @@
   font-size: 2.5rem;
   text-align: center;
 }
+
+.done {
+  font: inherit;
+  border: 2px solid $highlight;
+  border-radius: 25px;
+  color: $secondary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  background-color: transparent;
+  font-size: 1.1rem;
+  width: 35%;
+  margin-top: 2rem;
+  padding: 1rem;
+  outline: none;
+  cursor: pointer;
+}
