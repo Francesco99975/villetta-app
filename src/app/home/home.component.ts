@@ -48,8 +48,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.dishes.filter((dhs: Dish) => dhs.courseType === 'S');
   }
 
+  get aperitivi(): Dish[] {
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'R');
+  }
+
   get pizze(): Dish[] {
     return this.dishes.filter((dhs: Dish) => dhs.courseType === 'Z');
+  }
+
+  get salads(): Dish[] {
+    return this.dishes.filter((dhs: Dish) => dhs.courseType === 'I');
   }
 
   get desserts(): Dish[] {

@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
 import { Cart } from '../models/cart.model';
@@ -17,10 +17,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() checkout: boolean;
   cartQuantity: number;
   ordersOn: boolean;
+  sectionScroll: string;
 
   constructor(private router: Router, private cart: CartService, private settingsService: SettingsService) { }
 
   ngOnInit(): void {
+
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      this.doScroll();
+      this.sectionScroll= null;
+    });
+
     if(this.cart.get() != null) {
       this.cartQuantity = this.cart.get().quantity;
     }
@@ -51,5 +61,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onCheckout() {
     this.router.navigateByUrl('/checkout');
   }
+
+  onContact(dst: string) {
+    this.sectionScroll=dst;
+    this.router.navigate(['/'], {fragment: dst});
+  }
+
+  private doScroll() {
+
+    if (!this.sectionScroll) {
+      return;
+    }
+    try {
+      var elements = document.getElementById(this.sectionScroll);
+
+      elements.scrollIntoView();
+    }
+    finally{
+      this.sectionScroll = null;
+    }
+  } 
 
 }

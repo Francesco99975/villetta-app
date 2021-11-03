@@ -63,18 +63,43 @@
             </app-order-item>
         </div>
 
+        <div *ngIf="aperitivi.length > 0" class="course">
+            <div class="course-title">Aperitivo</div>
+
+            <app-menu-item class="wrap"
+                *ngFor="let dish of aperitivi; let i = index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.imageUrl"
+                [price]="dish.price"
+                [divider]="i + 1 < aperitivi.length">
+            </app-menu-item>
+        </div>
+
         <div *ngIf="pizze.length > 0" class="course">
             <div class="course-title">Pizza</div>
 
-            <app-order-item class="wrap" 
+            <app-menu-item class="wrap"
                 *ngFor="let dish of pizze; let i = index" 
-                [id]="dish.id" 
                 [name]="dish.name" 
                 [description]="dish.description"
                 [imageUrl]="dish.imageUrl"
                 [price]="dish.price"
                 [divider]="i + 1 < pizze.length">
-            </app-order-item>
+            </app-menu-item>
+        </div>
+
+        <div *ngIf="salads.length > 0" class="course">
+            <div class="course-title">Salad</div>
+
+            <app-menu-item class="wrap"
+                *ngFor="let dish of salads; let i = index" 
+                [name]="dish.name" 
+                [description]="dish.description"
+                [imageUrl]="dish.imageUrl"
+                [price]="dish.price"
+                [divider]="i + 1 < salads.length">
+            </app-menu-item>
         </div>
 
         <div *ngIf="desserts.length > 0" class="course">
